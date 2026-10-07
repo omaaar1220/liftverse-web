@@ -110,13 +110,11 @@
   .pro-tag { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; color: #0A0A0A; background: var(--gold); padding: 2px 8px; border-radius: 4px; vertical-align: middle; margin-left: 8px; }
 
   /* Gallery carousel */
-  .gallery-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; margin-bottom: 32px; }
-  .gallery-head .section-head { margin-bottom: 0; }
-  .arrows { display: flex; gap: 8px; }
-  .arrows button { width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--border); background: var(--surface); color: var(--text); cursor: pointer; display: grid; place-items: center; }
-  .arrows button:hover { border-color: var(--gold); }
-  .track-outer { max-width: 1152px; margin: 0 auto; }
-  .track { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 8px 16px 24px; scrollbar-width: none; }
+  .carousel { display: flex; align-items: center; gap: 12px; max-width: 1264px; margin: 0 auto; padding: 0 16px; }
+  .carousel .arrow { flex: none; width: 52px; height: 52px; margin-bottom: 40px; border-radius: 50%; border: 1px solid var(--border); background: var(--surface); color: var(--text); cursor: pointer; display: grid; place-items: center; transition: border-color .15s, opacity .15s; }
+  .carousel .arrow:hover { border-color: var(--gold); }
+  .carousel .arrow:disabled { opacity: 0.3; cursor: default; border-color: var(--border); }
+  .track { flex: 1; min-width: 0; display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 8px 16px 24px; scrollbar-width: none; }
   .track::-webkit-scrollbar { display: none; }
   .track figure { margin: 0; flex: 0 0 230px; scroll-snap-align: center; }
   .track .phone { border-radius: 30px; padding: 7px; box-shadow: none; }
@@ -208,7 +206,8 @@
     .rank img { width: 90% !important; }
     section { padding: 64px 0; }
     .foot { grid-template-columns: 1fr 1fr; }
-    .gallery-head .arrows { display: none; }
+    .carousel { padding: 0; }
+    .carousel .arrow { display: none; }
     .cta-box { padding: 48px 20px; }
   }
   @media (max-width: 480px) {
@@ -277,7 +276,7 @@
   <div class="wrap">
     <div class="section-head reveal">
       <p class="label">Cómo funciona</p>
-      <h2 class="display">Entrena. Sube. Compite.</h2>
+      <h2 class="display">Entrena. Sube de rango. Compite.</h2>
     </div>
     <div class="steps">
       <div class="step reveal"><h3>Registra tu entreno</h3><p>Elige una rutina lista o arma la tuya y anota series, pesos y repeticiones con el temporizador de descanso a mano.</p></div>
@@ -354,17 +353,14 @@
 </section>
 
 <section id="galeria">
-  <div class="wrap gallery-head">
+  <div class="wrap">
     <div class="section-head reveal">
       <p class="label">La app</p>
       <h2 class="display">Mírala por dentro.</h2>
     </div>
-    <div class="arrows">
-      <button type="button" id="prev" aria-label="Anterior"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.5 4.5 7 10l5.5 5.5"/></svg></button>
-      <button type="button" id="next" aria-label="Siguiente"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 4.5 13 10l-5.5 5.5"/></svg></button>
-    </div>
   </div>
-  <div class="track-outer">
+  <div class="carousel">
+    <button type="button" class="arrow" id="prev" aria-label="Anterior"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.5 4.5 7 10l5.5 5.5"/></svg></button>
     <div class="track" id="track">
       <figure><div class="phone"><img src="/img/app/inicio.webp" alt="Inicio con el entrenamiento del día" width="600" height="1220" loading="lazy"></div><figcaption>Tu entreno del día</figcaption></figure>
       <figure><div class="phone"><img src="/img/app/rangos.webp" alt="Rangos de fuerza" width="600" height="1220" loading="lazy"></div><figcaption>Rangos de fuerza</figcaption></figure>
@@ -375,6 +371,7 @@
       <figure><div class="phone"><img src="/img/app/recuperacion.webp" alt="Recuperación muscular" width="600" height="1220" loading="lazy"></div><figcaption>Recuperación muscular</figcaption></figure>
       <figure><div class="phone"><img src="/img/app/resumen-mes.webp" alt="Resumen del mes para compartir" width="600" height="1220" loading="lazy"></div><figcaption>Resumen del mes</figcaption></figure>
     </div>
+    <button type="button" class="arrow" id="next" aria-label="Siguiente"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 4.5 13 10l-5.5 5.5"/></svg></button>
   </div>
 </section>
 
@@ -569,8 +566,17 @@
     var card = track.querySelector('figure');
     track.scrollBy({ left: dir * (card.offsetWidth + 20) * 2, behavior: 'smooth' });
   }
-  document.getElementById('prev').addEventListener('click', function () { move(-1); });
-  document.getElementById('next').addEventListener('click', function () { move(1); });
+  var prev = document.getElementById('prev'), next = document.getElementById('next');
+  prev.addEventListener('click', function () { move(-1); });
+  next.addEventListener('click', function () { move(1); });
+  // Apaga la flecha cuando el carrusel llega a un extremo
+  function updateArrows() {
+    prev.disabled = track.scrollLeft <= 4;
+    next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
+  }
+  track.addEventListener('scroll', updateArrows, { passive: true });
+  window.addEventListener('resize', updateArrows);
+  updateArrows();
 
   // Aparecer al hacer scroll
   var items = document.querySelectorAll('.reveal');
