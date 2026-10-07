@@ -4,68 +4,187 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Términos de uso · LiftVerse</title>
+<meta name="description" content="Términos de uso de LiftVerse, la app de gimnasio que convierte tu fuerza en rangos.">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://liftverse.app/terminos">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #1a1a2e; color: #e0e0e0; margin: 0; line-height: 1.6; }
-  main { max-width: 720px; margin: 0 auto; padding: 32px 16px 64px; }
-  h1 { color: #ffffff; margin-bottom: 4px; }
-  h2 { color: #16c79a; font-size: 1.15rem; margin-top: 28px; }
-  .updated { color: #a8a8a8; font-size: 0.9rem; }
-  li { margin-bottom: 6px; }
-  p { white-space: pre-line; }
+  :root {
+    --bg: #0A0A0A;
+    --surface: #141414;
+    --border: #262626;
+    --text: #F5F5F5;
+    --body: #D4D4D4;
+    --muted: #A3A3A3;
+    --gold: #C9A24A;
+    --gold-soft: rgba(201,162,74,0.14);
+    --champagne: #E8D9A8;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font-family: Inter, system-ui, sans-serif; line-height: 1.7; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  a { color: inherit; }
+  img { max-width: 100%; display: block; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
+
+  /* Nav */
+  .nav { position: sticky; top: 0; z-index: 20; background: rgba(10,10,10,0.85); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 16px; }
+  .nav .logo img { height: 44px; width: auto; }
+  .nav .right { display: flex; align-items: center; gap: 20px; font-size: 14px; }
+  .nav .back { color: var(--muted); text-decoration: none; }
+  .nav .back:hover { color: var(--text); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; padding: 10px 16px; border-radius: 6px; font-weight: 600; font-size: 14px; text-decoration: none; background: var(--gold); color: #0A0A0A; transition: transform .15s; }
+  .btn:hover { transform: translateY(-1px); }
+
+  /* Encabezado */
+  header.doc { position: relative; overflow: hidden; padding: 72px 0 48px; border-bottom: 1px solid var(--border); }
+  header.doc::before { content: ""; position: absolute; right: -240px; top: -260px; width: 720px; height: 720px; background: radial-gradient(circle, rgba(201,162,74,0.14), transparent 65%); pointer-events: none; }
+  header.doc .wrap { position: relative; max-width: 792px; }
+  .label { font-size: 12px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin: 0 0 12px; }
+  h1 { font-family: "Bebas Neue", Impact, sans-serif; font-weight: 400; letter-spacing: 0.02em; line-height: 0.95; font-size: clamp(56px, 9vw, 96px); margin: 0; }
+  .updated { display: inline-block; margin-top: 20px; font-size: 13px; color: var(--champagne); background: var(--gold-soft); padding: 4px 12px; border-radius: 99px; }
+
+  /* Texto */
+  main { max-width: 792px; margin: 0 auto; padding: 16px 16px 96px; }
+  main section { padding: 32px 0; border-bottom: 1px solid var(--border); }
+  main section:last-child { border-bottom: 0; }
+  h2 { font-family: "Bebas Neue", Impact, sans-serif; font-weight: 400; letter-spacing: 0.03em; line-height: 1; font-size: 34px; margin: 0 0 16px; display: flex; align-items: baseline; gap: 14px; }
+  h2 span { color: var(--gold); font-size: 22px; }
+  main p { margin: 0 0 14px; color: var(--body); white-space: pre-line; }
+  main ul { list-style: none; margin: 0 0 14px; padding: 0; display: grid; gap: 10px; }
+  main li { position: relative; padding-left: 22px; color: var(--body); }
+  main li::before { content: ""; position: absolute; left: 2px; top: 0.7em; width: 7px; height: 7px; border-radius: 2px; background: var(--gold); }
+
+  /* Footer */
+  footer { border-top: 1px solid var(--border); padding: 64px 0 32px; font-size: 14px; color: var(--muted); }
+  .foot { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 32px; }
+  .foot img { height: 52px; width: auto; margin-bottom: 12px; }
+  .foot h4 { color: var(--text); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; margin: 0 0 14px; }
+  .foot ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .foot a { text-decoration: none; }
+  .foot a:hover, .foot a[aria-current] { color: var(--text); }
+  .copy { border-top: 1px solid var(--border); margin-top: 48px; padding-top: 24px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+
+  @media (max-width: 860px) {
+    header.doc { padding: 48px 0 36px; }
+    h2 { font-size: 30px; }
+    .foot { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 480px) {
+    .nav .back { display: none; }
+  }
 </style>
 </head>
 <body>
+<nav class="nav">
+  <div class="wrap">
+    <a class="logo" href="/" aria-label="LiftVerse, inicio"><img src="/img/logo.webp" alt="LiftVerse" width="81" height="44"></a>
+    <div class="right">
+      <a class="back" href="/">← Volver al inicio</a>
+      <a class="btn" href="/#descargar">Descargar</a>
+    </div>
+  </div>
+</nav>
+<header class="doc">
+  <div class="wrap">
+    <p class="label">Legal</p>
+    <h1>Términos de uso</h1>
+    <span class="updated">Última actualización: 28 de septiembre de 2026</span>
+  </div>
+</header>
 <main>
-<h1>Términos de uso</h1>
-<p class="updated">LiftVerse · Última actualización: 28 de septiembre de 2026</p>
-<h2>Aceptación</h2>
+<section>
+<h2><span>01</span>Aceptación</h2>
 <p>Al crear una cuenta o usar LiftVerse aceptas estos términos. Si no estás de acuerdo, no uses la app.</p>
-
-
-<h2>No es consejo médico</h2>
+</section>
+<section>
+<h2><span>02</span>No es consejo médico</h2>
 <p>LiftVerse entrega información orientativa sobre entrenamiento y fuerza: rutinas, rangos, estadísticas e instrucciones de ejercicios. No reemplaza a un médico, kinesiólogo ni entrenador certificado. Consulta a un profesional antes de empezar un programa de ejercicio, sobre todo si tienes una lesión o una condición de salud. Entrenas bajo tu propia responsabilidad.</p>
-
-
-<h2>Tu cuenta</h2>
-
+</section>
+<section>
+<h2><span>03</span>Tu cuenta</h2>
 <ul><li>Tus datos deben ser reales y tu cuenta es personal.</li><li>Eres responsable de lo que se haga con ella. Cuida tu contraseña.</li><li>Puedes eliminar tu cuenta cuando quieras desde la app.</li></ul>
-
-<h2>Uso correcto</h2>
+</section>
+<section>
+<h2><span>04</span>Uso correcto</h2>
 <p>No está permitido:</p>
 <ul><li>Hacerte pasar por otra persona.</li><li>Acosar o insultar a otros usuarios.</li><li>Publicar contenido ofensivo o ilegal en comunidades, mensajes o nombres.</li><li>Registrar datos falsos para ganar retos o rankings.</li><li>Intentar acceder a datos de otros usuarios, o sobrecargar o atacar el servicio.</li></ul>
 <p>Podemos suspender o eliminar las cuentas que no cumplan estas reglas.</p>
-<h2>Monedas virtuales y retos</h2>
-
+</section>
+<section>
+<h2><span>05</span>Monedas virtuales y retos</h2>
 <ul><li>LiftVerse tiene dos monedas virtuales: los lingotes de hierro, que se ganan entrenando, y las GymCoins, que se ganan con medallas y se usan en la tienda. No tienen valor en dinero, no se pueden cambiar por dinero y no se pueden transferir fuera de LiftVerse.</li><li>En los retos entre amigos se apuestan lingotes de hierro, nunca dinero real. Las GymCoins no se pueden apostar.</li><li>Podemos corregir saldos o resultados obtenidos con errores del sistema o con trampas.</li></ul>
-
-<h2>Coaches, comunidades y gimnasios</h2>
+</section>
+<section>
+<h2><span>06</span>Coaches, comunidades y gimnasios</h2>
 <p>Los coaches, los administradores de comunidades y los gimnasios que usan LiftVerse son responsables de lo que publican y de cómo tratan a sus atletas y socios. LiftVerse solo entrega la herramienta.</p>
-
-
-<h2>Disponibilidad</h2>
+</section>
+<section>
+<h2><span>07</span>Disponibilidad</h2>
 <p>Hacemos lo posible para que la app funcione siempre, pero puede tener interrupciones o errores. No respondemos por pérdidas causadas por fallas del servicio, en la medida que la ley lo permita.</p>
-
-
-<h2>Cambios</h2>
+</section>
+<section>
+<h2><span>08</span>Cambios</h2>
 <p>Podemos actualizar estos términos. Si el cambio es importante, te avisaremos dentro de la app. Si sigues usando LiftVerse después del cambio, aceptas la nueva versión.</p>
-
-
-<h2>Créditos y licencias</h2>
+</section>
+<section>
+<h2><span>09</span>Créditos y licencias</h2>
 <p>LiftVerse usa estos materiales de terceros:</p>
-<ul><li>Base de ejercicios y sus fotos: free-exercise-db, de Yuhonas (github.com/yuhonas/free-exercise-db). Publicada como dominio público (The Unlicense).</li><li>Dibujo del cuerpo de "Tu cuerpo por rangos": react-native-body-highlighter, de ELABBASSI Hicham (github.com/HichamELBSI/react-native-body-highlighter). Licencia MIT, cuyo aviso se reproduce abajo.</li><li>Tipografía de los temas Élite y Hierro: Inter, de The Inter Project Authors (rsms.me/inter), distribuida con el paquete @expo-google-fonts/inter. Licencia SIL Open Font License 1.1.</li><li>Tipografía de títulos y números del tema Élite: Bebas Neue, de Dharma Type (Ryoichi Tsunekawa), distribuida con el paquete @expo-google-fonts/bebas-neue. Licencia SIL Open Font License 1.1.</li><li>Íconos que reemplazan a los emojis: Material Design Icons, de Pictogrammers (pictogrammers.com), distribuidos con el paquete @expo/vector-icons. Licencia Apache 2.0.</li></ul>
+<ul><li>Base de ejercicios y sus fotos: free-exercise-db, de Yuhonas (github.com/yuhonas/free-exercise-db). Publicada como dominio público (The Unlicense).</li><li>Dibujo del cuerpo de &quot;Tu cuerpo por rangos&quot;: react-native-body-highlighter, de ELABBASSI Hicham (github.com/HichamELBSI/react-native-body-highlighter). Licencia MIT, cuyo aviso se reproduce abajo.</li><li>Tipografía de los temas Élite y Hierro: Inter, de The Inter Project Authors (rsms.me/inter), distribuida con el paquete @expo-google-fonts/inter. Licencia SIL Open Font License 1.1.</li><li>Tipografía de títulos y números del tema Élite: Bebas Neue, de Dharma Type (Ryoichi Tsunekawa), distribuida con el paquete @expo-google-fonts/bebas-neue. Licencia SIL Open Font License 1.1.</li><li>Íconos que reemplazan a los emojis: Material Design Icons, de Pictogrammers (pictogrammers.com), distribuidos con el paquete @expo/vector-icons. Licencia Apache 2.0.</li></ul>
 <p>MIT License
 
 Copyright (c) 2022 ELABBASSI Hicham
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
-<h2>Contacto</h2>
+THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+</section>
+<section>
+<h2><span>10</span>Contacto</h2>
 <p>Si tienes dudas, escríbenos a contacto@liftverse.app. Estos términos se rigen por las leyes de Chile.</p>
-
-
+</section>
 </main>
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <img src="/img/logo.webp" alt="LiftVerse" width="96" height="52">
+        <p>Tu fuerza, en rangos.</p>
+      </div>
+      <div>
+        <h4>App</h4>
+        <ul>
+          <li><a href="/#funciones">Funciones</a></li>
+          <li><a href="/#rangos">Rangos</a></li>
+          <li><a href="/#planes">Planes</a></li>
+          <li><a href="/#faq">Preguntas frecuentes</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="/privacidad">Privacidad</a></li>
+          <li><a href="/terminos" aria-current="page">Términos de uso</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="mailto:contacto@liftverse.app">contacto@liftverse.app</a></li>
+          <li><a href="https://instagram.com/liftverse.app" target="_blank" rel="noopener">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copy">
+      <span>© 2026 LiftVerse</span>
+      <span>Hecho en Chile</span>
+    </div>
+  </div>
+</footer>
 </body>
 </html>

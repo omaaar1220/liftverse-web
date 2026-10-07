@@ -4,64 +4,179 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Política de privacidad · LiftVerse</title>
+<meta name="description" content="Política de privacidad de LiftVerse, la app de gimnasio que convierte tu fuerza en rangos.">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://liftverse.app/privacidad">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #1a1a2e; color: #e0e0e0; margin: 0; line-height: 1.6; }
-  main { max-width: 720px; margin: 0 auto; padding: 32px 16px 64px; }
-  h1 { color: #ffffff; margin-bottom: 4px; }
-  h2 { color: #16c79a; font-size: 1.15rem; margin-top: 28px; }
-  .updated { color: #a8a8a8; font-size: 0.9rem; }
-  li { margin-bottom: 6px; }
-  p { white-space: pre-line; }
+  :root {
+    --bg: #0A0A0A;
+    --surface: #141414;
+    --border: #262626;
+    --text: #F5F5F5;
+    --body: #D4D4D4;
+    --muted: #A3A3A3;
+    --gold: #C9A24A;
+    --gold-soft: rgba(201,162,74,0.14);
+    --champagne: #E8D9A8;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font-family: Inter, system-ui, sans-serif; line-height: 1.7; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  a { color: inherit; }
+  img { max-width: 100%; display: block; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
+
+  /* Nav */
+  .nav { position: sticky; top: 0; z-index: 20; background: rgba(10,10,10,0.85); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 16px; }
+  .nav .logo img { height: 44px; width: auto; }
+  .nav .right { display: flex; align-items: center; gap: 20px; font-size: 14px; }
+  .nav .back { color: var(--muted); text-decoration: none; }
+  .nav .back:hover { color: var(--text); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; padding: 10px 16px; border-radius: 6px; font-weight: 600; font-size: 14px; text-decoration: none; background: var(--gold); color: #0A0A0A; transition: transform .15s; }
+  .btn:hover { transform: translateY(-1px); }
+
+  /* Encabezado */
+  header.doc { position: relative; overflow: hidden; padding: 72px 0 48px; border-bottom: 1px solid var(--border); }
+  header.doc::before { content: ""; position: absolute; right: -240px; top: -260px; width: 720px; height: 720px; background: radial-gradient(circle, rgba(201,162,74,0.14), transparent 65%); pointer-events: none; }
+  header.doc .wrap { position: relative; max-width: 792px; }
+  .label { font-size: 12px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin: 0 0 12px; }
+  h1 { font-family: "Bebas Neue", Impact, sans-serif; font-weight: 400; letter-spacing: 0.02em; line-height: 0.95; font-size: clamp(56px, 9vw, 96px); margin: 0; }
+  .updated { display: inline-block; margin-top: 20px; font-size: 13px; color: var(--champagne); background: var(--gold-soft); padding: 4px 12px; border-radius: 99px; }
+
+  /* Texto */
+  main { max-width: 792px; margin: 0 auto; padding: 16px 16px 96px; }
+  main section { padding: 32px 0; border-bottom: 1px solid var(--border); }
+  main section:last-child { border-bottom: 0; }
+  h2 { font-family: "Bebas Neue", Impact, sans-serif; font-weight: 400; letter-spacing: 0.03em; line-height: 1; font-size: 34px; margin: 0 0 16px; display: flex; align-items: baseline; gap: 14px; }
+  h2 span { color: var(--gold); font-size: 22px; }
+  main p { margin: 0 0 14px; color: var(--body); white-space: pre-line; }
+  main ul { list-style: none; margin: 0 0 14px; padding: 0; display: grid; gap: 10px; }
+  main li { position: relative; padding-left: 22px; color: var(--body); }
+  main li::before { content: ""; position: absolute; left: 2px; top: 0.7em; width: 7px; height: 7px; border-radius: 2px; background: var(--gold); }
+
+  /* Footer */
+  footer { border-top: 1px solid var(--border); padding: 64px 0 32px; font-size: 14px; color: var(--muted); }
+  .foot { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 32px; }
+  .foot img { height: 52px; width: auto; margin-bottom: 12px; }
+  .foot h4 { color: var(--text); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; margin: 0 0 14px; }
+  .foot ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .foot a { text-decoration: none; }
+  .foot a:hover, .foot a[aria-current] { color: var(--text); }
+  .copy { border-top: 1px solid var(--border); margin-top: 48px; padding-top: 24px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+
+  @media (max-width: 860px) {
+    header.doc { padding: 48px 0 36px; }
+    h2 { font-size: 30px; }
+    .foot { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 480px) {
+    .nav .back { display: none; }
+  }
 </style>
 </head>
 <body>
+<nav class="nav">
+  <div class="wrap">
+    <a class="logo" href="/" aria-label="LiftVerse, inicio"><img src="/img/logo.webp" alt="LiftVerse" width="81" height="44"></a>
+    <div class="right">
+      <a class="back" href="/">← Volver al inicio</a>
+      <a class="btn" href="/#descargar">Descargar</a>
+    </div>
+  </div>
+</nav>
+<header class="doc">
+  <div class="wrap">
+    <p class="label">Legal</p>
+    <h1>Política de privacidad</h1>
+    <span class="updated">Última actualización: 28 de septiembre de 2026</span>
+  </div>
+</header>
 <main>
-<h1>Política de privacidad</h1>
-<p class="updated">LiftVerse · Última actualización: 28 de septiembre de 2026</p>
-<h2>Quiénes somos</h2>
+<section>
+<h2><span>01</span>Quiénes somos</h2>
 <p>LiftVerse es una app para registrar entrenamientos, seguir tu progreso y entrenar con amigos, coaches y gimnasios. El responsable de tus datos es LiftVerse. Puedes escribirnos a contacto@liftverse.app.</p>
-
-
-<h2>Qué datos guardamos</h2>
-
+</section>
+<section>
+<h2><span>02</span>Qué datos guardamos</h2>
 <ul><li>Cuenta: nombre, correo electrónico y un código de amigo.</li><li>Perfil físico: edad, género, peso, altura, medidas corporales, nivel y objetivos. Si lo indicas, también tu país, región y ciudad.</li><li>Entrenamientos: rutina, ejercicios, series, pesos, repeticiones, récords, racha, nivel (XP), medallas, lingotes de hierro, GymCoins y compras de la tienda.</li><li>Social: amigos, solicitudes, comunidades a las que perteneces, retos con amigos y vínculos con tu coach, incluidos los mensajes que te deja.</li><li>Modo gimnasio: si un gimnasio te registra como socio, guarda tus datos de socio, tu plan, tus pagos y tus asistencias. En ese caso el gimnasio es responsable de esos datos.</li></ul>
-
-<h2>Qué NO guardamos</h2>
-
+</section>
+<section>
+<h2><span>03</span>Qué NO guardamos</h2>
 <ul><li>Tus fotos de progreso quedan solo en tu celular: no se suben a nuestros servidores.</li><li>No usamos publicidad ni herramientas de seguimiento de terceros, y no vendemos tus datos.</li><li>No guardamos tu contraseña: la gestiona el servicio de autenticación de Google Firebase.</li></ul>
-
-<h2>Para qué los usamos</h2>
-
+</section>
+<section>
+<h2><span>04</span>Para qué los usamos</h2>
 <ul><li>Calcular tus rangos de fuerza, estadísticas, rachas y medallas.</li><li>Mostrar tu progreso y el historial de tus entrenamientos.</li><li>Las funciones sociales que tú eliges usar: amigos, comunidades, retos y coach.</li><li>Enviarte recordatorios en tu celular (racha, descanso, clases), que puedes desactivar en los ajustes del teléfono.</li></ul>
-
-<h2>Qué ven otras personas</h2>
-
+</section>
+<section>
+<h2><span>05</span>Qué ven otras personas</h2>
 <ul><li>Los usuarios que tienen tu código de amigo, o que comparten contigo una comunidad o un reto, pueden ver tu perfil público: nombre, avatar, récords, rango, racha, medallas y XP. Para calcular tu rango, ese perfil incluye también tu género, edad, peso y altura.</li><li>Tus amigos pueden compararse contigo y retarte. En un reto, tu rival ve los días y los kilos de tus entrenamientos durante ese reto.</li><li>En una comunidad, los demás miembros ven tus estadísticas del ranking, o un alias si elegiste participar de forma anónima.</li><li>Tu coach puede ver tu perfil completo y tu historial mientras el vínculo esté activo. Lo puedes quitar cuando quieras.</li><li>Tu correo, tus medidas corporales detalladas y tu historial completo no son visibles para otros usuarios (salvo para tu coach).</li></ul>
-
-<h2>Dónde se guardan</h2>
+</section>
+<section>
+<h2><span>06</span>Dónde se guardan</h2>
 <p>Tus datos se guardan en Google Firebase (Firestore y Authentication), un servicio de Google Cloud. Pueden almacenarse en servidores fuera de tu país. Google trata esos datos por cuenta nuestra, según sus propias condiciones de seguridad.</p>
-
-
-<h2>Cuánto tiempo</h2>
+</section>
+<section>
+<h2><span>07</span>Cuánto tiempo</h2>
 <p>Guardamos tus datos mientras tengas tu cuenta. Si la eliminas, borramos tu perfil, tu historial, tus récords, tus amistades, tus vínculos con coach y las comunidades que creaste.</p>
-
-
-<h2>Tus derechos</h2>
+</section>
+<section>
+<h2><span>08</span>Tus derechos</h2>
 <p>Puedes acceder a tus datos, corregirlos, pedir que los eliminemos, oponerte a su uso o pedir una copia. Casi todo lo puedes hacer directo en la app: editar tus datos en Perfil y Progreso, y eliminar tu cuenta en Perfil → Configuración → Cuenta. Para lo demás, escríbenos a contacto@liftverse.app. Estos derechos se basan en la ley chilena de protección de datos personales (Ley 19.628 y Ley 21.719).</p>
-
-
-<h2>Menores de edad</h2>
+</section>
+<section>
+<h2><span>09</span>Menores de edad</h2>
 <p>Debes tener al menos 14 años para usar LiftVerse. Si eres menor de 18, necesitas la autorización de tu madre, padre o tutor.</p>
-
-
-<h2>Seguridad</h2>
+</section>
+<section>
+<h2><span>10</span>Seguridad</h2>
 <p>Protegemos tus datos con conexiones cifradas y con reglas de acceso que limitan qué puede leer o modificar cada usuario. Ningún sistema es 100% seguro: si detectamos un problema que afecte tus datos, te avisaremos.</p>
-
-
-<h2>Cambios</h2>
+</section>
+<section>
+<h2><span>11</span>Cambios</h2>
 <p>Si cambiamos esta política, actualizaremos la fecha de arriba. Si el cambio es importante, te avisaremos dentro de la app.</p>
-
-
+</section>
 </main>
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <img src="/img/logo.webp" alt="LiftVerse" width="96" height="52">
+        <p>Tu fuerza, en rangos.</p>
+      </div>
+      <div>
+        <h4>App</h4>
+        <ul>
+          <li><a href="/#funciones">Funciones</a></li>
+          <li><a href="/#rangos">Rangos</a></li>
+          <li><a href="/#planes">Planes</a></li>
+          <li><a href="/#faq">Preguntas frecuentes</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="/privacidad" aria-current="page">Privacidad</a></li>
+          <li><a href="/terminos">Términos de uso</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="mailto:contacto@liftverse.app">contacto@liftverse.app</a></li>
+          <li><a href="https://instagram.com/liftverse.app" target="_blank" rel="noopener">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copy">
+      <span>© 2026 LiftVerse</span>
+      <span>Hecho en Chile</span>
+    </div>
+  </div>
+</footer>
 </body>
 </html>
