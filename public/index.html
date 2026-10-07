@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>LiftVerse · Tu fuerza, en rangos</title>
-<meta name="description" content="LiftVerse es la app de gimnasio que convierte tu fuerza en rangos: registra tus entrenamientos, sube de Novato a Legendario, mantén tu racha y compite con tus amigos.">
+<title>LiftVerse · Únete al LiftVerso</title>
+<meta name="description" content="LiftVerse es el universo del gimnasio: atletas, coaches y gimnasios conectados en una sola app. Registra tus entrenos, sube de Novato a Legendario y compite con tus amigos.">
 <meta name="theme-color" content="#0A0A0A">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<meta property="og:title" content="LiftVerse · Tu fuerza, en rangos">
-<meta property="og:description" content="Registra tus entrenamientos, sube de rango y compite con tus amigos.">
+<meta property="og:title" content="LiftVerse · Únete al LiftVerso">
+<meta property="og:description" content="El universo del gimnasio: atletas, coaches y gimnasios en una sola app.">
 <meta property="og:image" content="https://liftverse.app/img/rango7.webp">
 <meta property="og:url" content="https://liftverse.app/">
 <meta property="og:type" content="website">
@@ -81,12 +81,49 @@
   .facts strong { display: block; font-family: "Bebas Neue", sans-serif; font-weight: 400; font-size: 44px; line-height: 1; color: var(--champagne); }
   .facts span { font-size: 13px; color: var(--muted); }
 
+  /* Estrellas de fondo (el universo) */
+  .stars { position: absolute; inset: 0; pointer-events: none; opacity: 0.55;
+    background-image:
+      radial-gradient(1px 1px at 8% 18%, #fff, transparent), radial-gradient(1px 1px at 22% 72%, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 35% 30%, var(--champagne), transparent), radial-gradient(1px 1px at 48% 86%, #fff, transparent),
+      radial-gradient(1px 1px at 57% 12%, #fff, transparent), radial-gradient(1.5px 1.5px at 66% 58%, var(--gold), transparent),
+      radial-gradient(1px 1px at 78% 26%, #fff, transparent), radial-gradient(1px 1px at 88% 80%, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 94% 8%, var(--champagne), transparent), radial-gradient(1px 1px at 4% 92%, #fff, transparent),
+      radial-gradient(1px 1px at 30% 50%, #fff, transparent), radial-gradient(1px 1px at 72% 94%, #fff, transparent); }
+
   /* Sections */
   section { padding: 96px 0; border-top: 1px solid var(--border); }
   .section-head { max-width: 680px; margin-bottom: 48px; }
   .section-head.center { margin-left: auto; margin-right: auto; text-align: center; }
   .section-head h2 { font-size: clamp(44px, 6vw, 68px); }
   .section-head p { color: var(--muted); font-size: 17px; margin: 16px 0 0; }
+
+  /* Universo: órbitas y los tres modos */
+  #universo { position: relative; overflow: hidden; }
+  #universo > .wrap { position: relative; }
+  .universe { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; margin-bottom: 56px; }
+  .universe .section-head { margin-bottom: 0; }
+  .orbit { position: relative; width: 100%; max-width: 440px; margin: 0 auto; aspect-ratio: 1; }
+  .orbit svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  .orbit .core { position: absolute; left: 50%; top: 50%; width: 26%; transform: translate(-50%, -50%); }
+  .orbit .spin { transform-origin: 200px 200px; animation: spin 40s linear infinite; }
+  .orbit .spin.s2 { animation-duration: 60s; animation-direction: reverse; }
+  .orbit .spin.s3 { animation-duration: 90s; }
+  .orbit text { font-family: Inter, sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.14em; fill: var(--text); }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .modes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .mode { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 28px; transition: border-color .2s; }
+  .mode:hover { border-color: rgba(201,162,74,0.5); }
+  .mode .num { font-family: "Bebas Neue", sans-serif; font-size: 16px; letter-spacing: 0.2em; color: var(--gold); }
+  .mode h3 { font-family: "Bebas Neue", sans-serif; font-weight: 400; font-size: 48px; line-height: 1; margin: 6px 0 4px; }
+  .mode .who { color: var(--muted); font-size: 15px; margin: 0 0 18px; }
+  .mode .checks { margin-bottom: 24px; }
+  .mode .foot-line { margin-top: auto; padding-top: 18px; border-top: 1px solid var(--border); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px 12px; font-size: 14px; }
+  .mode .foot-line strong { color: var(--champagne); font-weight: 600; }
+  .mode .foot-line a { color: var(--gold); text-decoration: none; font-weight: 600; }
+  .connect { margin-top: 16px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+  .connect div { background: var(--bg); padding: 20px 22px; font-size: 14px; color: var(--muted); }
+  .connect b { display: block; color: var(--text); font-size: 15px; margin-bottom: 4px; }
 
   /* Steps */
   .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; counter-reset: step; }
@@ -148,6 +185,11 @@
   .price small { font-family: Inter, sans-serif; font-size: 14px; color: var(--muted); }
   .plan .checks { margin-top: 24px; }
 
+  .gym-bar { margin-top: 16px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding: 24px 32px; border: 1px dashed rgba(201,162,74,0.5); border-radius: 14px; }
+  .gym-bar h3 { margin: 0 0 4px; font-size: 19px; }
+  .gym-bar p { margin: 0; color: var(--muted); font-size: 15px; max-width: 640px; }
+  .btn-line { border-color: var(--gold); color: var(--gold); }
+
   /* FAQ */
   .faq { max-width: 780px; margin: 0 auto; display: grid; gap: 12px; }
   .faq details { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; }
@@ -198,7 +240,10 @@
     .phones .phone img { border-radius: 21px; }
     .phones .p2, .phones .p3 { top: 50px; }
     .facts { grid-template-columns: repeat(2, 1fr); margin-top: 40px; }
-    .steps, .pro { grid-template-columns: 1fr; }
+    .steps, .pro, .modes, .connect, .universe { grid-template-columns: 1fr; }
+    .universe { gap: 24px; margin-bottom: 40px; }
+    .orbit { max-width: 340px; }
+    .gym-bar { padding: 24px 20px; }
     .split { grid-template-columns: 1fr; gap: 32px; padding: 40px 0; }
     .split.reverse .split-media { order: 0; }
     .split-media .phone { width: 240px; }
@@ -219,6 +264,7 @@
   }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
+    .orbit .spin { animation: none; }
     .js .reveal { opacity: 1; transform: none; transition: none; }
   }
 </style>
@@ -230,6 +276,7 @@
   <div class="wrap">
     <a class="logo" href="/" aria-label="LiftVerse, inicio"><img src="/img/logo.webp" alt="LiftVerse" width="81" height="44"></a>
     <ul id="menu">
+      <li><a href="#universo">El LiftVerso</a></li>
       <li><a href="#funciones">Funciones</a></li>
       <li><a href="#galeria">La app</a></li>
       <li><a href="#rangos">Rangos</a></li>
@@ -246,12 +293,13 @@
 </nav>
 
 <header class="hero">
+  <div class="stars" aria-hidden="true"></div>
   <div class="wrap">
     <div class="hero-grid">
       <div>
         <p class="label">Train · Connect · Rank</p>
-        <h1 class="display">Tu fuerza,<br><span>en rangos.</span></h1>
-        <p class="lead">La app de gimnasio que convierte cada serie en progreso visible. Registra tus entrenos, sube de Novato a Legendario según lo que levantas en relación a tu cuerpo y compite con tus amigos.</p>
+        <h1 class="display">Únete al<br><span>LiftVerso.</span></h1>
+        <p class="lead">El universo del gimnasio en una sola app. Tú entrenas y subes de Novato a Legendario, tu coach te guía y tu gimnasio te acompaña. Todos conectados, todos compitiendo.</p>
         <div class="stores">
           <a class="store" href="#descargar"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 3.5v17a.5.5 0 0 0 .76.43L19.5 12.4a.5.5 0 0 0 0-.86L4.76 3.07A.5.5 0 0 0 4 3.5z"/></svg><span><small>Muy pronto en</small><strong>Google Play</strong></span></a>
           <a class="store" href="#descargar"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M10.5 18.5h3" stroke-linecap="round"/></svg><span><small>Muy pronto en</small><strong>App Store</strong></span></a>
@@ -266,11 +314,90 @@
     <div class="facts reveal">
       <div><strong>+1.000</strong><span>ejercicios</span></div>
       <div><strong>7 rangos</strong><span>de Novato a Legendario</span></div>
-      <div><strong>75</strong><span>medallas por desbloquear</span></div>
+      <div><strong>3 modos</strong><span>Atleta, Coach y Gym</span></div>
       <div><strong>Gratis</strong><span>para entrenar, sin anuncios</span></div>
     </div>
   </div>
 </header>
+
+<section id="universo">
+  <div class="stars" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="universe">
+      <div class="section-head reveal">
+        <p class="label">El LiftVerso</p>
+        <h2 class="display">Un universo.<br>Tres modos.</h2>
+        <p>LiftVerse no es solo una app para anotar pesos. Es un universo donde se encuentran los que entrenan, los que entrenan a otros y los gimnasios. Cada uno tiene su modo, y todos están conectados.</p>
+      </div>
+      <div class="orbit reveal" aria-hidden="true">
+        <svg viewBox="0 0 400 400">
+          <defs>
+            <radialGradient id="glow"><stop offset="0" stop-color="#C9A24A" stop-opacity="0.35"/><stop offset="1" stop-color="#C9A24A" stop-opacity="0"/></radialGradient>
+          </defs>
+          <circle cx="200" cy="200" r="110" fill="url(#glow)"/>
+          <circle cx="200" cy="200" r="95" fill="none" stroke="#2E2E2E"/>
+          <circle cx="200" cy="200" r="145" fill="none" stroke="#2E2E2E" stroke-dasharray="2 6"/>
+          <circle cx="200" cy="200" r="190" fill="none" stroke="#2E2E2E"/>
+          <g class="spin"><circle cx="295" cy="200" r="3" fill="#E8D9A8"/></g>
+          <g class="spin s2"><circle cx="55" cy="200" r="2.5" fill="#F5F5F5"/></g>
+          <g class="spin s3"><circle cx="200" cy="10" r="3" fill="#C9A24A"/></g>
+          <circle cx="133" cy="133" r="9" fill="#F5F5F5"/>
+          <text x="133" y="113" text-anchor="middle">ATLETA</text>
+          <circle cx="345" cy="200" r="11" fill="#E8D9A8"/>
+          <text x="345" y="176" text-anchor="middle">COACH</text>
+          <circle cx="200" cy="390" r="13" fill="#C9A24A"/>
+          <text x="200" y="364" text-anchor="middle">GYM</text>
+        </svg>
+        <img class="core" src="/img/logo.webp" alt="" width="96" height="52">
+      </div>
+    </div>
+
+    <div class="modes">
+      <article class="mode reveal">
+        <span class="num">Modo 01</span>
+        <h3>Atleta</h3>
+        <p class="who">Para todo el que entrena.</p>
+        <ul class="checks">
+          <li>Registra tus entrenos y rutinas</li>
+          <li>Rangos de fuerza, rachas y medallas</li>
+          <li>Amigos, versus y comunidades</li>
+          <li>Recuperación muscular y progreso</li>
+        </ul>
+        <div class="foot-line"><strong>Gratis</strong><span class="muted">Pro desde $2.990/mes</span></div>
+      </article>
+      <article class="mode reveal">
+        <span class="num">Modo 02</span>
+        <h3>Coach</h3>
+        <p class="who">Para entrenadores y personal trainers.</p>
+        <ul class="checks">
+          <li>Panel con todos tus atletas</li>
+          <li>Arma y edita sus rutinas</li>
+          <li>Su progreso, adherencia y recuperación</li>
+          <li>Agenda de sesiones personales</li>
+        </ul>
+        <div class="foot-line"><strong>$9.990/mes</strong><span class="muted">o $79.990 al año</span></div>
+      </article>
+      <article class="mode reveal">
+        <span class="num">Modo 03</span>
+        <h3>Gym</h3>
+        <p class="who">Para gimnasios y sus equipos.</p>
+        <ul class="checks">
+          <li>Socios, planes, pagos y sedes</li>
+          <li>Check-in con código QR</li>
+          <li>Clases con reserva de cupos</li>
+          <li>Comunidad verificada con ranking y avisos</li>
+        </ul>
+        <div class="foot-line"><strong>Para tu gimnasio</strong><a href="mailto:contacto@liftverse.app?subject=Modo%20Gym">Escríbenos →</a></div>
+      </article>
+    </div>
+
+    <div class="connect reveal">
+      <div><b>Atleta y Coach</b>Tu coach ve tu progreso y te propone cambios de rutina que tú aceptas o rechazas.</div>
+      <div><b>Atleta y Gym</b>Tu gimnasio te avisa de clases y noticias, y compites en su ranking con los demás socios.</div>
+      <div><b>Atleta y Atleta</b>Amigos, versus, comunidades y entrenos en vivo con quien entrenes.</div>
+    </div>
+  </div>
+</section>
 
 <section id="como">
   <div class="wrap">
@@ -289,7 +416,7 @@
 <section id="funciones">
   <div class="wrap">
     <div class="section-head reveal">
-      <p class="label">Funciones</p>
+      <p class="label">Modo Atleta</p>
       <h2 class="display">Todo tu entreno, en una app.</h2>
       <p>Pensada para usarla en el gimnasio: rápida entre series y con una razón para volver cada día.</p>
     </div>
@@ -417,8 +544,8 @@
   <div class="wrap">
     <div class="section-head reveal">
       <p class="label">Planes</p>
-      <h2 class="display">Gratis para entrenar. Pro para ir más allá.</h2>
-      <p>Y si entrenas a otras personas, el Modo Coach se contrata aparte.</p>
+      <h2 class="display">Elige tu lugar en el LiftVerso.</h2>
+      <p>Entrenar es gratis. Pro suma funciones avanzadas, y el Modo Coach se contrata aparte si entrenas a otras personas.</p>
     </div>
     <div class="pro">
       <div class="plan reveal">
@@ -459,6 +586,13 @@
         </ul>
       </div>
     </div>
+    <div class="gym-bar reveal">
+      <div>
+        <h3>¿Tienes un gimnasio?</h3>
+        <p>El Modo Gym es una experiencia aparte para administrar socios, pagos, clases y tu comunidad. Te contamos los planes.</p>
+      </div>
+      <a class="btn btn-line" href="mailto:contacto@liftverse.app?subject=Modo%20Gym">Escríbenos</a>
+    </div>
   </div>
 </section>
 
@@ -470,8 +604,16 @@
     </div>
     <div class="faq">
       <details class="reveal">
+        <summary>¿Qué es el LiftVerso?</summary>
+        <p>Es el universo de LiftVerse: una sola app donde están los que entrenan (Modo Atleta), los entrenadores (Modo Coach) y los gimnasios (Modo Gym). Tu coach puede seguir tu progreso, tu gimnasio puede avisarte de clases y noticias, y tú compites con tus amigos y con los socios de tu gimnasio.</p>
+      </details>
+      <details class="reveal">
         <summary>¿LiftVerse es gratis?</summary>
         <p>Sí. Registrar entrenos, los rangos, las rachas, las medallas, los amigos, los versus y las comunidades son gratis y sin anuncios. LiftVerse Pro es opcional y suma funciones avanzadas como Tu cuerpo por rangos y estadísticas. Si eres entrenador, el Modo Coach es una suscripción aparte para gestionar a tus atletas.</p>
+      </details>
+      <details class="reveal">
+        <summary>Tengo un gimnasio, ¿cómo lo sumo?</summary>
+        <p>Al crear tu cuenta eliges el tipo Gimnasio y entras al Modo Gym, pensado para administrar el gimnasio: socios, planes, pagos, sedes, check-in, clases y la comunidad verificada de tu gimnasio. Escríbenos a <a href="mailto:contacto@liftverse.app">contacto@liftverse.app</a> y te contamos los planes.</p>
       </details>
       <details class="reveal">
         <summary>¿Cómo se calcula mi rango?</summary>
@@ -510,8 +652,8 @@
   <div class="wrap">
     <div class="cta-box reveal">
       <p class="label">Muy pronto</p>
-      <h2 class="display">Tu próximo rango te espera.</h2>
-      <p>LiftVerse llega pronto a Android e iPhone. Síguenos para enterarte primero del lanzamiento.</p>
+      <h2 class="display">Únete al LiftVerso.</h2>
+      <p>Atletas, coaches y gimnasios, en un mismo universo. LiftVerse llega pronto a Android e iPhone: síguenos para enterarte primero del lanzamiento.</p>
       <div class="stores">
         <span class="store"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 3.5v17a.5.5 0 0 0 .76.43L19.5 12.4a.5.5 0 0 0 0-.86L4.76 3.07A.5.5 0 0 0 4 3.5z"/></svg><span><small>Android</small><strong>Google Play</strong></span><span class="soon-tag">Pronto</span></span>
         <span class="store"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M10.5 18.5h3" stroke-linecap="round"/></svg><span><small>iPhone</small><strong>App Store</strong></span><span class="soon-tag">Pronto</span></span>
