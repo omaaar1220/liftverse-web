@@ -140,7 +140,7 @@
   .rank:nth-child(7) img { width: 100%; }
 
   /* Plans */
-  .pro { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .pro { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
   .plan { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 32px; }
   .plan.highlight { border-color: var(--gold); background: linear-gradient(180deg, rgba(201,162,74,0.08), var(--surface) 40%); }
   .plan h3 { margin: 0; font-size: 19px; }
@@ -387,7 +387,7 @@
       <div class="tile reveal"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l7 7M20 4l-7 7M4 20l5-5M20 20l-5-5M3 9V4h5M21 9V4h-5"/></svg></div><h3>Versus 1 contra 1</h3><p>Reta a un amigo por una semana o un mes: más kilos, mejor adherencia o mejor puntaje general.</p></div>
       <div class="tile reveal"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.5-3.5 3.2-5.5 6.5-5.5s6 2 6.5 5.5"/><circle cx="17" cy="9" r="2.5"/><path d="M17 14c2.5 0 4.3 1.5 4.5 4"/></svg></div><h3>Comunidades</h3><p>Ranking semanal y mensual, muro con los entrenos de todos y una meta grupal.</p></div>
       <div class="tile reveal"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="7" height="14" rx="1.5"/><rect x="14" y="5" width="7" height="14" rx="1.5"/><path d="M10 12h4"/></svg></div><h3>Entrena con un amigo</h3><p>La misma lista de ejercicios en los dos teléfonos, en vivo. Cada uno anota sus propios pesos.</p></div>
-      <div class="tile reveal"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/></svg></div><h3>Modo Coach</h3><p>Tu coach ve tu progreso y te propone cambios de rutina que tú aceptas o rechazas.</p></div>
+      <div class="tile reveal"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/></svg></div><h3>Modo Coach</h3><p>Tu coach ve tu progreso y te propone cambios de rutina que tú aceptas o rechazas. Para ti es gratis.</p></div>
       <div class="tile reveal"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><path d="M14 14h2v2h-2zM18 18h2v2h-2zM18 14h2M14 18v2"/></svg></div><h3>Comparte rutinas</h3><p>Pasa tu rutina a un amigo con un código o un QR, y la importa con un toque.</p></div>
       <div class="tile reveal"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6 5 3H2"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg></div><h3>Tienda y temas</h3><p>Gana GymCoins con tus medallas y cámbialos por temas, títulos y marcos para tu perfil.</p></div>
     </div>
@@ -418,6 +418,7 @@
     <div class="section-head reveal">
       <p class="label">Planes</p>
       <h2 class="display">Gratis para entrenar. Pro para ir más allá.</h2>
+      <p>Y si entrenas a otras personas, el Modo Coach se contrata aparte.</p>
     </div>
     <div class="pro">
       <div class="plan reveal">
@@ -442,8 +443,19 @@
           <li>Detalle de recuperación por músculo</li>
           <li>Estadísticas avanzadas</li>
           <li>Hasta 10 rutinas guardadas</li>
-          <li>Modo Coach para entrenar a otros</li>
           <li>Bono mensual y comunidades sin costo</li>
+        </ul>
+      </div>
+      <div class="plan reveal">
+        <h3>Modo Coach</h3>
+        <div class="price">$9.990 <small>CLP / mes</small></div>
+        <span class="muted">Para entrenadores · aparte de Pro</span>
+        <ul class="checks">
+          <li>Panel con todos tus atletas</li>
+          <li>Arma y edita sus rutinas</li>
+          <li>Su progreso, récords y adherencia</li>
+          <li>Su recuperación muscular</li>
+          <li>Agenda de sesiones personales</li>
         </ul>
       </div>
     </div>
@@ -459,7 +471,7 @@
     <div class="faq">
       <details class="reveal">
         <summary>¿LiftVerse es gratis?</summary>
-        <p>Sí. Registrar entrenos, los rangos, las rachas, las medallas, los amigos, los versus y las comunidades son gratis y sin anuncios. LiftVerse Pro es opcional y suma funciones avanzadas como Tu cuerpo por rangos, estadísticas y Modo Coach.</p>
+        <p>Sí. Registrar entrenos, los rangos, las rachas, las medallas, los amigos, los versus y las comunidades son gratis y sin anuncios. LiftVerse Pro es opcional y suma funciones avanzadas como Tu cuerpo por rangos y estadísticas. Si eres entrenador, el Modo Coach es una suscripción aparte para gestionar a tus atletas.</p>
       </details>
       <details class="reveal">
         <summary>¿Cómo se calcula mi rango?</summary>
