@@ -23,159 +23,388 @@
     --text: #F5F5F5;
     --muted: #A3A3A3;
     --gold: #C9A24A;
+    --gold-soft: rgba(201,162,74,0.14);
     --champagne: #E8D9A8;
   }
   * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body { margin: 0; background: var(--bg); color: var(--text); font-family: Inter, system-ui, sans-serif; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+  body { margin: 0; background: var(--bg); color: var(--text); font-family: Inter, system-ui, sans-serif; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
   a { color: inherit; }
   img { max-width: 100%; display: block; }
-  .hero .wrap > *, .grid > *, .pro > * { min-width: 0; }
   .wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
+  .wrap > *, .grid > *, .split > *, .pro > * { min-width: 0; }
   .display { font-family: "Bebas Neue", Impact, sans-serif; font-weight: 400; letter-spacing: 0.02em; line-height: 0.95; margin: 0; }
   .label { font-size: 12px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin: 0 0 12px; }
+  .muted { color: var(--muted); }
 
   /* Nav */
-  nav { position: sticky; top: 0; z-index: 10; background: rgba(10,10,10,0.85); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
-  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
-  nav img { height: 44px; width: auto; }
-  nav ul { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; font-size: 14px; color: var(--muted); }
-  nav ul a { text-decoration: none; }
-  nav ul a:hover { color: var(--text); }
+  .nav { position: sticky; top: 0; z-index: 20; background: rgba(10,10,10,0.85); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 16px; }
+  .nav .logo img { height: 44px; width: auto; }
+  .nav ul { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; font-size: 14px; color: var(--muted); }
+  .nav ul a { text-decoration: none; }
+  .nav ul a:hover { color: var(--text); }
+  .nav .right { display: flex; align-items: center; gap: 12px; }
+  .menu-btn { display: none; place-items: center; background: none; border: 1px solid var(--border); border-radius: 6px; color: var(--text); width: 44px; height: 44px; cursor: pointer; }
 
   /* Buttons */
-  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 24px; border-radius: 6px; font-weight: 600; font-size: 15px; text-decoration: none; border: 1px solid transparent; transition: transform .15s, background .15s; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 24px; border-radius: 6px; font-weight: 600; font-size: 15px; text-decoration: none; border: 1px solid transparent; transition: transform .15s, background .15s; cursor: pointer; }
   .btn:hover { transform: translateY(-1px); }
   .btn-gold { background: var(--gold); color: #0A0A0A; }
-  .btn-ghost { border-color: var(--border); color: var(--text); }
-  .btn-ghost:hover { background: var(--surface); }
+  .btn-sm { padding: 10px 16px; font-size: 14px; }
+  .store { display: inline-flex; align-items: center; gap: 12px; padding: 10px 18px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface); text-decoration: none; min-width: 190px; text-align: left; }
+  a.store:hover { border-color: rgba(201,162,74,0.5); }
+  .store small { display: block; font-size: 11px; color: var(--muted); letter-spacing: 0.04em; }
+  .store strong { display: block; font-size: 16px; line-height: 1.2; }
+  .store .soon-tag { margin-left: auto; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); background: var(--gold-soft); padding: 3px 8px; border-radius: 99px; }
+  .stores { display: flex; flex-wrap: wrap; gap: 12px; }
+
+  /* Phone frame */
+  .phone { position: relative; border-radius: 34px; padding: 8px; background: linear-gradient(160deg, #2a2a2a, #111); border: 1px solid #333; box-shadow: 0 40px 80px rgba(0,0,0,0.6); }
+  .phone img { border-radius: 27px; width: 100%; height: auto; aspect-ratio: 600 / 1220; object-fit: cover; object-position: top; background: #000; }
 
   /* Hero */
-  .hero { position: relative; overflow: hidden; padding: 96px 0 80px; }
-  .hero::before { content: ""; position: absolute; inset: -20% -10% auto auto; width: 720px; height: 720px; background: radial-gradient(circle, rgba(201,162,74,0.18), transparent 65%); pointer-events: none; }
-  .hero .wrap { position: relative; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center; }
-  .hero h1 { font-size: clamp(64px, 10vw, 128px); }
+  .hero { position: relative; overflow: hidden; padding: 80px 0 72px; }
+  .hero::before { content: ""; position: absolute; right: -200px; top: -120px; width: 820px; height: 820px; background: radial-gradient(circle, rgba(201,162,74,0.16), transparent 65%); pointer-events: none; }
+  .hero .wrap { position: relative; }
+  .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+  .hero h1 { font-size: clamp(64px, 9vw, 120px); }
   .hero h1 span { color: var(--gold); }
   .hero p.lead { font-size: 18px; color: var(--muted); max-width: 520px; margin: 24px 0 32px; }
-  .hero .ctas { display: flex; flex-wrap: wrap; gap: 12px; }
-  .hero .soon { margin-top: 16px; font-size: 13px; color: var(--muted); }
-  .hero-badge { filter: drop-shadow(0 30px 60px rgba(201,162,74,0.25)); animation: float 6s ease-in-out infinite; }
-  @keyframes float { 50% { transform: translateY(-12px); } }
+  .phones { position: relative; height: 600px; }
+  .phones .phone { position: absolute; width: 250px; }
+  .phones .p1 { left: 50%; top: 0; transform: translateX(-50%); z-index: 2; }
+  .phones .p2 { left: 0; top: 70px; transform: rotate(-7deg); opacity: 0.8; }
+  .phones .p3 { right: 0; top: 70px; transform: rotate(7deg); opacity: 0.8; }
+  .facts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; margin-top: 64px; }
+  .facts div { background: var(--bg); padding: 22px 16px; text-align: center; }
+  .facts strong { display: block; font-family: "Bebas Neue", sans-serif; font-weight: 400; font-size: 44px; line-height: 1; color: var(--champagne); }
+  .facts span { font-size: 13px; color: var(--muted); }
 
   /* Sections */
-  section { padding: 88px 0; border-top: 1px solid var(--border); }
-  .section-head { max-width: 640px; margin-bottom: 48px; }
-  .section-head h2 { font-size: clamp(44px, 6vw, 64px); }
+  section { padding: 96px 0; border-top: 1px solid var(--border); }
+  .section-head { max-width: 680px; margin-bottom: 48px; }
+  .section-head.center { margin-left: auto; margin-right: auto; text-align: center; }
+  .section-head h2 { font-size: clamp(44px, 6vw, 68px); }
   .section-head p { color: var(--muted); font-size: 17px; margin: 16px 0 0; }
 
-  /* Features */
-  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 28px; }
-  .card .num { font-family: "Bebas Neue", sans-serif; font-size: 20px; color: var(--gold); letter-spacing: 0.1em; }
-  .card h3 { font-size: 19px; margin: 8px 0 8px; }
-  .card p { margin: 0; color: var(--muted); font-size: 15px; }
+  /* Steps */
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; counter-reset: step; }
+  .step { padding: 28px; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); }
+  .step::before { counter-increment: step; content: "0" counter(step); font-family: "Bebas Neue", sans-serif; font-size: 56px; line-height: 1; color: var(--gold); display: block; margin-bottom: 12px; }
+  .step h3 { margin: 0 0 6px; font-size: 19px; }
+  .step p { margin: 0; color: var(--muted); font-size: 15px; }
+
+  /* Feature rows */
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; padding: 48px 0; }
+  .split + .split { border-top: 1px solid var(--border); }
+  .split.reverse .split-media { order: 2; }
+  .split-media { position: relative; display: flex; justify-content: center; }
+  .split-media::before { content: ""; position: absolute; inset: 10% 15%; background: radial-gradient(circle, rgba(201,162,74,0.18), transparent 70%); }
+  .split-media .phone { width: 290px; }
+  .split h3 { font-family: "Bebas Neue", sans-serif; font-weight: 400; font-size: clamp(40px, 5vw, 56px); line-height: 0.95; margin: 0 0 16px; }
+  .split p { color: var(--muted); font-size: 17px; margin: 0 0 20px; }
+  .checks { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+  .checks li { display: flex; gap: 12px; align-items: flex-start; font-size: 15px; }
+  .checks li::before { content: ""; flex: none; width: 20px; height: 20px; margin-top: 2px; border-radius: 50%; background: var(--gold-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M6 10.5l2.5 2.5L14 7.5' fill='none' stroke='%23C9A24A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/20px no-repeat; }
+  .pro-tag { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; color: #0A0A0A; background: var(--gold); padding: 2px 8px; border-radius: 4px; vertical-align: middle; margin-left: 8px; }
+
+  /* Gallery carousel */
+  .gallery-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; margin-bottom: 32px; }
+  .gallery-head .section-head { margin-bottom: 0; }
+  .arrows { display: flex; gap: 8px; }
+  .arrows button { width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--border); background: var(--surface); color: var(--text); cursor: pointer; display: grid; place-items: center; }
+  .arrows button:hover { border-color: var(--gold); }
+  .track-outer { max-width: 1152px; margin: 0 auto; }
+  .track { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 8px 16px 24px; scrollbar-width: none; }
+  .track::-webkit-scrollbar { display: none; }
+  .track figure { margin: 0; flex: 0 0 230px; scroll-snap-align: center; }
+  .track .phone { border-radius: 30px; padding: 7px; box-shadow: none; }
+  .track .phone img { border-radius: 24px; }
+  .track figcaption { text-align: center; margin-top: 14px; font-size: 14px; color: var(--muted); }
+
+  /* More features */
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .tile { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 24px; transition: border-color .2s; }
+  .tile:hover { border-color: rgba(201,162,74,0.5); }
+  .tile .ico { width: 44px; height: 44px; border-radius: 10px; background: var(--gold-soft); display: grid; place-items: center; margin-bottom: 16px; color: var(--gold); }
+  .tile h3 { margin: 0 0 6px; font-size: 16px; }
+  .tile p { margin: 0; color: var(--muted); font-size: 14px; }
 
   /* Ranks */
   .ranks { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; align-items: end; }
   .rank { text-align: center; }
   .rank img { margin: 0 auto 12px; transition: transform .2s; }
-  .rank:hover img { transform: scale(1.06); }
+  .rank:hover img { transform: scale(1.08); }
   .rank span { font-family: "Bebas Neue", sans-serif; font-size: 22px; letter-spacing: 0.05em; color: var(--champagne); }
   .rank:nth-child(1) img { width: 70%; } .rank:nth-child(2) img { width: 75%; } .rank:nth-child(3) img { width: 80%; }
   .rank:nth-child(4) img { width: 85%; } .rank:nth-child(5) img { width: 90%; } .rank:nth-child(6) img { width: 95%; }
   .rank:nth-child(7) img { width: 100%; }
-  .ranks-note { color: var(--muted); font-size: 14px; margin-top: 32px; text-align: center; }
 
-  /* Pro */
+  /* Plans */
   .pro { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .pro .card ul { margin: 16px 0 0; padding-left: 20px; color: var(--muted); }
-  .pro .card li { margin-bottom: 6px; }
-  .pro .card.highlight { border-color: var(--gold); }
-  .price { font-family: "Bebas Neue", sans-serif; font-size: 44px; line-height: 1; margin-top: 8px; }
+  .plan { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 32px; }
+  .plan.highlight { border-color: var(--gold); background: linear-gradient(180deg, rgba(201,162,74,0.08), var(--surface) 40%); }
+  .plan h3 { margin: 0; font-size: 19px; }
+  .price { font-family: "Bebas Neue", sans-serif; font-size: 52px; line-height: 1; margin: 12px 0 4px; }
   .price small { font-family: Inter, sans-serif; font-size: 14px; color: var(--muted); }
+  .plan .checks { margin-top: 24px; }
+
+  /* FAQ */
+  .faq { max-width: 780px; margin: 0 auto; display: grid; gap: 12px; }
+  .faq details { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; }
+  .faq details[open] { border-color: rgba(201,162,74,0.5); }
+  .faq summary { list-style: none; cursor: pointer; padding: 20px 24px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: "+"; font-size: 24px; font-weight: 400; color: var(--gold); transition: transform .2s; flex: none; }
+  .faq details[open] summary::after { transform: rotate(45deg); }
+  .faq details p { margin: 0; padding: 0 24px 22px; color: var(--muted); }
+  .faq details p a, .faq-more a { color: var(--gold); }
+  .faq-more { text-align: center; margin-top: 32px; color: var(--muted); }
 
   /* CTA */
-  .cta { text-align: center; }
-  .cta h2 { font-size: clamp(48px, 7vw, 80px); }
-  .cta p { color: var(--muted); max-width: 520px; margin: 16px auto 32px; }
-  .cta .ctas { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; }
+  .cta-box { border: 1px solid var(--border); border-radius: 20px; padding: 64px 32px; text-align: center; background: radial-gradient(ellipse at top, rgba(201,162,74,0.16), transparent 60%), var(--surface); }
+  .cta-box h2 { font-size: clamp(48px, 7vw, 80px); }
+  .cta-box p { color: var(--muted); max-width: 520px; margin: 16px auto 32px; }
+  .cta-box .stores, .cta-box .ctas { justify-content: center; }
+  .ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
 
-  footer { border-top: 1px solid var(--border); padding: 40px 0; font-size: 14px; color: var(--muted); }
-  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; }
-  footer .links { display: flex; flex-wrap: wrap; gap: 20px; }
-  footer a { text-decoration: none; }
-  footer a:hover { color: var(--text); }
+  /* Footer */
+  footer { border-top: 1px solid var(--border); padding: 64px 0 32px; font-size: 14px; color: var(--muted); }
+  .foot { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 32px; }
+  .foot img { height: 52px; width: auto; margin-bottom: 12px; }
+  .foot h4 { color: var(--text); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; margin: 0 0 14px; }
+  .foot ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .foot a { text-decoration: none; }
+  .foot a:hover { color: var(--text); }
+  .copy { border-top: 1px solid var(--border); margin-top: 48px; padding-top: 24px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
 
+  /* Aparecer al hacer scroll (solo si corre JS) */
+  .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+  .js .reveal.in { opacity: 1; transform: none; }
+
+  @media (max-width: 960px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
+    .phones { height: 520px; }
+    .phones .phone { width: 210px; }
+  }
   @media (max-width: 860px) {
-    nav ul { display: none; }
-    .hero { padding: 56px 0 48px; }
-    .hero .wrap { grid-template-columns: 1fr; }
-    .hero-badge { max-width: 340px; margin: 0 auto; order: -1; }
-    .grid, .pro { grid-template-columns: 1fr; }
+    .nav ul { display: none; position: absolute; top: 64px; left: 0; right: 0; flex-direction: column; gap: 0; background: var(--bg); border-bottom: 1px solid var(--border); padding: 8px 16px 16px; font-size: 16px; }
+    .nav ul.open { display: flex; }
+    .nav ul a { display: block; padding: 12px 0; }
+    .menu-btn { display: grid; }
+    .hero { padding: 40px 0 56px; }
+    .hero-grid { grid-template-columns: 1fr; }
+    .phones { height: 440px; max-width: 420px; width: 100%; margin: 0 auto; }
+    .phones .phone { width: 190px; border-radius: 26px; padding: 6px; }
+    .phones .phone img { border-radius: 21px; }
+    .phones .p2, .phones .p3 { top: 50px; }
+    .facts { grid-template-columns: repeat(2, 1fr); margin-top: 40px; }
+    .steps, .pro { grid-template-columns: 1fr; }
+    .split { grid-template-columns: 1fr; gap: 32px; padding: 40px 0; }
+    .split.reverse .split-media { order: 0; }
+    .split-media .phone { width: 240px; }
     .ranks { grid-template-columns: repeat(4, 1fr); row-gap: 24px; }
     .rank img { width: 90% !important; }
     section { padding: 64px 0; }
+    .foot { grid-template-columns: 1fr 1fr; }
+    .gallery-head .arrows { display: none; }
+    .cta-box { padding: 48px 20px; }
   }
-  @media (max-width: 480px) { .ranks { grid-template-columns: repeat(3, 1fr); } }
-  @media (prefers-reduced-motion: reduce) { .hero-badge { animation: none; } html { scroll-behavior: auto; } }
+  @media (max-width: 480px) {
+    .ranks { grid-template-columns: repeat(3, 1fr); }
+    .grid { grid-template-columns: 1fr; }
+    .phones { height: 380px; }
+    .phones .phone { width: 165px; }
+    .store { width: 100%; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .js .reveal { opacity: 1; transform: none; transition: none; }
+  }
 </style>
+<script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
 
-<nav>
+<nav class="nav">
   <div class="wrap">
-    <a href="/" aria-label="LiftVerse, inicio"><img src="/img/logo.webp" alt="LiftVerse" width="66" height="36"></a>
-    <ul>
+    <a class="logo" href="/" aria-label="LiftVerse, inicio"><img src="/img/logo.webp" alt="LiftVerse" width="81" height="44"></a>
+    <ul id="menu">
       <li><a href="#funciones">Funciones</a></li>
+      <li><a href="#galeria">La app</a></li>
       <li><a href="#rangos">Rangos</a></li>
-      <li><a href="#pro">Pro</a></li>
-      <li><a href="https://instagram.com/liftverse.app" target="_blank" rel="noopener">Instagram</a></li>
+      <li><a href="#planes">Planes</a></li>
+      <li><a href="#faq">Preguntas</a></li>
     </ul>
+    <div class="right">
+      <a class="btn btn-gold btn-sm" href="#descargar">Descargar</a>
+      <button class="menu-btn" id="menu-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 5h14M3 10h14M3 15h14"/></svg>
+      </button>
+    </div>
   </div>
 </nav>
 
 <header class="hero">
   <div class="wrap">
-    <div>
-      <p class="label">Train · Connect · Rank</p>
-      <h1 class="display">Tu fuerza,<br><span>en rangos.</span></h1>
-      <p class="lead">Registra cada serie, mira cómo crecen tus récords y sube de Novato a Legendario según lo que levantas en relación a tu cuerpo. Entrena solo, con amigos o con tu coach.</p>
-      <div class="ctas">
-        <a class="btn btn-gold" href="https://instagram.com/liftverse.app" target="_blank" rel="noopener">Síguenos en Instagram</a>
-        <a class="btn btn-ghost" href="#funciones">Ver funciones</a>
+    <div class="hero-grid">
+      <div>
+        <p class="label">Train · Connect · Rank</p>
+        <h1 class="display">Tu fuerza,<br><span>en rangos.</span></h1>
+        <p class="lead">La app de gimnasio que convierte cada serie en progreso visible. Registra tus entrenos, sube de Novato a Legendario según lo que levantas en relación a tu cuerpo y compite con tus amigos.</p>
+        <div class="stores">
+          <a class="store" href="#descargar"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 3.5v17a.5.5 0 0 0 .76.43L19.5 12.4a.5.5 0 0 0 0-.86L4.76 3.07A.5.5 0 0 0 4 3.5z"/></svg><span><small>Muy pronto en</small><strong>Google Play</strong></span></a>
+          <a class="store" href="#descargar"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M10.5 18.5h3" stroke-linecap="round"/></svg><span><small>Muy pronto en</small><strong>App Store</strong></span></a>
+        </div>
       </div>
-      <p class="soon">Muy pronto en Google Play y App Store.</p>
+      <div class="phones" aria-hidden="true">
+        <div class="phone p2"><img src="/img/app/rangos.webp" alt="" width="600" height="1220"></div>
+        <div class="phone p3"><img src="/img/app/cuerpo.webp" alt="" width="600" height="1220"></div>
+        <div class="phone p1"><img src="/img/app/inicio.webp" alt="" width="600" height="1220"></div>
+      </div>
     </div>
-    <img class="hero-badge" src="/img/rango7.webp" alt="Insignia del rango Legendario" width="540" height="290">
+    <div class="facts reveal">
+      <div><strong>+1.000</strong><span>ejercicios</span></div>
+      <div><strong>7 rangos</strong><span>de Novato a Legendario</span></div>
+      <div><strong>75</strong><span>medallas por desbloquear</span></div>
+      <div><strong>Gratis</strong><span>para entrenar, sin anuncios</span></div>
+    </div>
   </div>
 </header>
 
+<section id="como">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="label">Cómo funciona</p>
+      <h2 class="display">Entrena. Sube. Compite.</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><h3>Registra tu entreno</h3><p>Elige una rutina lista o arma la tuya y anota series, pesos y repeticiones con el temporizador de descanso a mano.</p></div>
+      <div class="step reveal"><h3>Sube de rango</h3><p>Cada ejercicio recibe un rango según tu peso, altura, edad y género. Más fuerza, mejor rango: así de simple.</p></div>
+      <div class="step reveal"><h3>Compite con los tuyos</h3><p>Compara rangos con tus amigos, rétalos a un versus y sube en el ranking de tu comunidad.</p></div>
+    </div>
+  </div>
+</section>
+
 <section id="funciones">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <p class="label">Funciones</p>
       <h2 class="display">Todo tu entreno, en una app.</h2>
-      <p>Pensada para el gimnasio: rápida de usar entre series y con una razón para volver cada día.</p>
+      <p>Pensada para usarla en el gimnasio: rápida entre series y con una razón para volver cada día.</p>
+    </div>
+
+    <div class="split reveal">
+      <div class="split-media"><div class="phone"><img src="/img/app/rangos.webp" alt="Pantalla de rangos de LiftVerse con el Rango General Legendario 1" width="600" height="1220" loading="lazy"></div></div>
+      <div>
+        <p class="label">Rangos de fuerza</p>
+        <h3>Sabe exactamente qué tan fuerte eres.</h3>
+        <p>LiftVerse compara lo que levantas con estándares de fuerza ajustados a tu cuerpo. Nada de números sueltos: un rango claro por ejercicio y un Rango General cuando registras 5 ejercicios.</p>
+        <ul class="checks">
+          <li>Rango por ejercicio y por grupo muscular</li>
+          <li>Ajustado a tu peso, altura, edad y género</li>
+          <li>Te avisa cuando subes de rango, y a tus amigos también</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="split reverse reveal">
+      <div class="split-media"><div class="phone"><img src="/img/app/cuerpo.webp" alt="Mapa del cuerpo pintado según el rango de cada músculo" width="600" height="1220" loading="lazy"></div></div>
+      <div>
+        <p class="label">Tu cuerpo por rangos <span class="pro-tag">PRO</span></p>
+        <h3>Tu físico, pintado según tu fuerza.</h3>
+        <p>Cada músculo toma el color de su rango, de frente y de espalda. Ve de un vistazo dónde estás fuerte, qué está quedando atrás y si tu entrenamiento está equilibrado.</p>
+        <ul class="checks">
+          <li>Vista de frente y de espalda</li>
+          <li>Equilibrio entre tren superior e inferior, empuje y tirón</li>
+          <li>Compártelo como imagen</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="split reveal">
+      <div class="split-media"><div class="phone"><img src="/img/app/recuperacion.webp" alt="Mapa de recuperación muscular con músculos fatigados y recuperados" width="600" height="1220" loading="lazy"></div></div>
+      <div>
+        <p class="label">Recuperación muscular</p>
+        <h3>Entrena lo que está listo.</h3>
+        <p>Según tus últimos entrenos, LiftVerse calcula qué músculos están fatigados, en recuperación o recuperados, con tiempos basados en estudios y en el volumen de cada sesión.</p>
+        <ul class="checks">
+          <li>Mapa del cuerpo con 4 estados</li>
+          <li>Cuándo entrenaste cada músculo por última vez</li>
+          <li>Te avisa si un músculo lleva demasiado sin entrenar</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="split reverse reveal">
+      <div class="split-media"><div class="phone"><img src="/img/app/resumen-mes.webp" alt="Resumen del mes con entrenamientos, volumen y calendario" width="600" height="1220" loading="lazy"></div></div>
+      <div>
+        <p class="label">Progreso</p>
+        <h3>Tu evolución, lista para compartir.</h3>
+        <p>Historial completo de entrenos, récords personales, volumen semanal, peso y medidas corporales. Cada semana y cada mes, un resumen con tus números listo para subir a tus historias.</p>
+        <ul class="checks">
+          <li>Gráficos por ejercicio y por grupo muscular</li>
+          <li>Récords personales detectados al instante</li>
+          <li>Resúmenes semanales y mensuales para compartir</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="galeria">
+  <div class="wrap gallery-head">
+    <div class="section-head reveal">
+      <p class="label">La app</p>
+      <h2 class="display">Mírala por dentro.</h2>
+    </div>
+    <div class="arrows">
+      <button type="button" id="prev" aria-label="Anterior"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.5 4.5 7 10l5.5 5.5"/></svg></button>
+      <button type="button" id="next" aria-label="Siguiente"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 4.5 13 10l-5.5 5.5"/></svg></button>
+    </div>
+  </div>
+  <div class="track-outer">
+    <div class="track" id="track">
+      <figure><div class="phone"><img src="/img/app/inicio.webp" alt="Inicio con el entrenamiento del día" width="600" height="1220" loading="lazy"></div><figcaption>Tu entreno del día</figcaption></figure>
+      <figure><div class="phone"><img src="/img/app/rangos.webp" alt="Rangos de fuerza" width="600" height="1220" loading="lazy"></div><figcaption>Rangos de fuerza</figcaption></figure>
+      <figure><div class="phone"><img src="/img/app/cuerpo.webp" alt="Tu cuerpo por rangos" width="600" height="1220" loading="lazy"></div><figcaption>Tu cuerpo por rangos</figcaption></figure>
+      <figure><div class="phone"><img src="/img/app/ejercicio.webp" alt="Detalle de un ejercicio con foto e instrucciones" width="600" height="1220" loading="lazy"></div><figcaption>Ejercicios explicados paso a paso</figcaption></figure>
+      <figure><div class="phone"><img src="/img/app/rutina.webp" alt="Rutina y biblioteca de ejercicios por músculo" width="600" height="1220" loading="lazy"></div><figcaption>Tu rutina y +1.000 ejercicios</figcaption></figure>
+      <figure><div class="phone"><img src="/img/app/progreso.webp" alt="Progreso con volumen, series e intensidad" width="600" height="1220" loading="lazy"></div><figcaption>Progreso por músculo</figcaption></figure>
+      <figure><div class="phone"><img src="/img/app/recuperacion.webp" alt="Recuperación muscular" width="600" height="1220" loading="lazy"></div><figcaption>Recuperación muscular</figcaption></figure>
+      <figure><div class="phone"><img src="/img/app/resumen-mes.webp" alt="Resumen del mes para compartir" width="600" height="1220" loading="lazy"></div><figcaption>Resumen del mes</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section id="mas">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="label">Y mucho más</p>
+      <h2 class="display">Hecha para no dejar de ir.</h2>
     </div>
     <div class="grid">
-      <div class="card"><div class="num">01</div><h3>Rangos de fuerza</h3><p>Cada ejercicio tiene su rango según tu peso, altura, edad y género. Con 5 ejercicios desbloqueas tu Rango General.</p></div>
-      <div class="card"><div class="num">02</div><h3>Registro de entrenos</h3><p>Más de 1.000 ejercicios, rutinas listas o tuyas, temporizador de descanso, récords personales e historial completo.</p></div>
-      <div class="card"><div class="num">03</div><h3>Rachas y medallas</h3><p>Tu racha respeta los días de descanso de tu rutina. Gana medallas, lingotes y GymCoins solo por entrenar.</p></div>
-      <div class="card"><div class="num">04</div><h3>Versus con amigos</h3><p>Reta a tus amigos a un duelo semanal o mensual, compara rangos y entrenen juntos en una sesión compartida.</p></div>
-      <div class="card"><div class="num">05</div><h3>Comunidades</h3><p>Crea o únete a comunidades con ranking semanal, muro de entrenos y una meta grupal que cumplen entre todos.</p></div>
-      <div class="card"><div class="num">06</div><h3>Recuperación muscular</h3><p>Un mapa de tu cuerpo te muestra qué músculos están fatigados, en recuperación o listos para entrenar.</p></div>
+      <div class="tile reveal"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c1 3.5 5 5.5 5 10a5 5 0 0 1-10 0c0-2.5 1.5-4 2.5-5 .3 1.7 1 2.7 2 3.2C11 9 11 6 12 3z"/></svg></div><h3>Rachas inteligentes</h3><p>Tu racha respeta los días de descanso de tu rutina. Si fallas un día, puedes recuperarla.</p></div>
+      <div class="tile reveal"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="M8.5 14 7 22l5-3 5 3-1.5-8"/></svg></div><h3>75 medallas</h3><p>Por constancia, récords, rangos, versus y comunidades. Una vez ganadas, son tuyas para siempre.</p></div>
+      <div class="tile reveal"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l7 7M20 4l-7 7M4 20l5-5M20 20l-5-5M3 9V4h5M21 9V4h-5"/></svg></div><h3>Versus 1 contra 1</h3><p>Reta a un amigo por una semana o un mes: más kilos, mejor adherencia o mejor puntaje general.</p></div>
+      <div class="tile reveal"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.5-3.5 3.2-5.5 6.5-5.5s6 2 6.5 5.5"/><circle cx="17" cy="9" r="2.5"/><path d="M17 14c2.5 0 4.3 1.5 4.5 4"/></svg></div><h3>Comunidades</h3><p>Ranking semanal y mensual, muro con los entrenos de todos y una meta grupal.</p></div>
+      <div class="tile reveal"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="7" height="14" rx="1.5"/><rect x="14" y="5" width="7" height="14" rx="1.5"/><path d="M10 12h4"/></svg></div><h3>Entrena con un amigo</h3><p>La misma lista de ejercicios en los dos teléfonos, en vivo. Cada uno anota sus propios pesos.</p></div>
+      <div class="tile reveal"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/></svg></div><h3>Modo Coach</h3><p>Tu coach ve tu progreso y te propone cambios de rutina que tú aceptas o rechazas.</p></div>
+      <div class="tile reveal"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><path d="M14 14h2v2h-2zM18 18h2v2h-2zM18 14h2M14 18v2"/></svg></div><h3>Comparte rutinas</h3><p>Pasa tu rutina a un amigo con un código o un QR, y la importa con un toque.</p></div>
+      <div class="tile reveal"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6 5 3H2"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg></div><h3>Tienda y temas</h3><p>Gana GymCoins con tus medallas y cámbialos por temas, títulos y marcos para tu perfil.</p></div>
     </div>
   </div>
 </section>
 
 <section id="rangos">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <p class="label">Rangos</p>
       <h2 class="display">De Novato a Legendario.</h2>
       <p>Siete rangos, tres niveles cada uno. Se calculan con estándares de fuerza reales, así que subir de rango significa que de verdad estás más fuerte.</p>
     </div>
-    <div class="ranks">
+    <div class="ranks reveal">
       <div class="rank"><img src="/img/rango1.webp" alt="" loading="lazy"><span>Novato</span></div>
       <div class="rank"><img src="/img/rango2.webp" alt="" loading="lazy"><span>Bronce</span></div>
       <div class="rank"><img src="/img/rango3.webp" alt="" loading="lazy"><span>Plata</span></div>
@@ -187,31 +416,36 @@
   </div>
 </section>
 
-<section id="pro">
+<section id="planes">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <p class="label">Planes</p>
       <h2 class="display">Gratis para entrenar. Pro para ir más allá.</h2>
     </div>
     <div class="pro">
-      <div class="card">
+      <div class="plan reveal">
         <h3>LiftVerse</h3>
         <div class="price">Gratis</div>
-        <ul>
+        <span class="muted">Sin anuncios</span>
+        <ul class="checks">
           <li>Registro de entrenos y rutinas</li>
           <li>Rangos por ejercicio y Rango General</li>
           <li>Rachas, medallas y tienda</li>
           <li>Amigos, versus y comunidades</li>
+          <li>Mapa de recuperación muscular</li>
+          <li>Hasta 2 rutinas guardadas</li>
         </ul>
       </div>
-      <div class="card highlight">
+      <div class="plan highlight reveal">
         <h3>LiftVerse Pro</h3>
-        <div class="price">$2.990 <small>CLP / mes · o $19.990 al año</small></div>
-        <ul>
+        <div class="price">$2.990 <small>CLP / mes</small></div>
+        <span class="muted">o $19.990 al año</span>
+        <ul class="checks">
           <li>Tu cuerpo por rangos</li>
           <li>Detalle de recuperación por músculo</li>
           <li>Estadísticas avanzadas</li>
-          <li>Más rutinas guardadas y Modo Coach</li>
+          <li>Hasta 10 rutinas guardadas</li>
+          <li>Modo Coach para entrenar a otros</li>
           <li>Bono mensual y comunidades sin costo</li>
         </ul>
       </div>
@@ -219,27 +453,135 @@
   </div>
 </section>
 
-<section class="cta">
+<section id="faq">
   <div class="wrap">
-    <h2 class="display">Muy pronto en tu celular.</h2>
-    <p>Síguenos para enterarte primero del lanzamiento en Android e iPhone.</p>
-    <div class="ctas">
-      <a class="btn btn-gold" href="https://instagram.com/liftverse.app" target="_blank" rel="noopener">@liftverse.app</a>
-      <a class="btn btn-ghost" href="mailto:contacto@liftverse.app">contacto@liftverse.app</a>
+    <div class="section-head center reveal">
+      <p class="label">Preguntas frecuentes</p>
+      <h2 class="display">¿Tienes dudas?</h2>
+    </div>
+    <div class="faq">
+      <details class="reveal">
+        <summary>¿LiftVerse es gratis?</summary>
+        <p>Sí. Registrar entrenos, los rangos, las rachas, las medallas, los amigos, los versus y las comunidades son gratis y sin anuncios. LiftVerse Pro es opcional y suma funciones avanzadas como Tu cuerpo por rangos, estadísticas y Modo Coach.</p>
+      </details>
+      <details class="reveal">
+        <summary>¿Cómo se calcula mi rango?</summary>
+        <p>Comparamos tus mejores series de cada ejercicio con estándares de fuerza ajustados a tu peso, altura, edad y género. Así, un rango Oro significa lo mismo para una persona de 60 kg que para una de 100 kg. Cuando tienes 5 ejercicios con rango, se desbloquea tu Rango General.</p>
+      </details>
+      <details class="reveal">
+        <summary>¿Necesito saber entrenar para usarla?</summary>
+        <p>No. Al empezar eliges tu objetivo y tu nivel, y la app te propone una rutina. Los ejercicios traen foto e instrucciones paso a paso.</p>
+      </details>
+      <details class="reveal">
+        <summary>¿Puedo usar mi propia rutina?</summary>
+        <p>Sí. Puedes crear tu rutina desde cero, editar una de las que vienen, cambiar ejercicios, series y repeticiones, y guardar varias rutinas para alternarlas.</p>
+      </details>
+      <details class="reveal">
+        <summary>¿Puedo registrar en libras?</summary>
+        <p>Sí. Puedes elegir kilos o libras en cada ejercicio, por ejemplo libras en las máquinas y kilos en la barra. Los rangos y récords se calculan igual.</p>
+      </details>
+      <details class="reveal">
+        <summary>¿Qué pasa si un día no puedo ir al gimnasio?</summary>
+        <p>Los días de descanso de tu rutina no cortan tu racha. Si fallas un día de entreno, puedes saltarlo o recuperar la racha con GymCoins, que ganas con tus medallas.</p>
+      </details>
+      <details class="reveal">
+        <summary>¿Cuándo sale y en qué teléfonos funciona?</summary>
+        <p>LiftVerse llega muy pronto a Android (Google Play) y iPhone (App Store). Síguenos en Instagram para enterarte primero del lanzamiento.</p>
+      </details>
+      <details class="reveal">
+        <summary>¿Qué hacen con mis datos?</summary>
+        <p>Solo los usamos para que la app funcione: no vendemos tus datos ni usamos publicidad. Tus fotos de progreso se quedan en tu teléfono. Lee el detalle en nuestra <a href="/privacidad">política de privacidad</a>.</p>
+      </details>
+    </div>
+    <p class="faq-more">¿Otra pregunta? Escríbenos a <a href="mailto:contacto@liftverse.app">contacto@liftverse.app</a></p>
+  </div>
+</section>
+
+<section id="descargar">
+  <div class="wrap">
+    <div class="cta-box reveal">
+      <p class="label">Muy pronto</p>
+      <h2 class="display">Tu próximo rango te espera.</h2>
+      <p>LiftVerse llega pronto a Android e iPhone. Síguenos para enterarte primero del lanzamiento.</p>
+      <div class="stores">
+        <span class="store"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 3.5v17a.5.5 0 0 0 .76.43L19.5 12.4a.5.5 0 0 0 0-.86L4.76 3.07A.5.5 0 0 0 4 3.5z"/></svg><span><small>Android</small><strong>Google Play</strong></span><span class="soon-tag">Pronto</span></span>
+        <span class="store"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M10.5 18.5h3" stroke-linecap="round"/></svg><span><small>iPhone</small><strong>App Store</strong></span><span class="soon-tag">Pronto</span></span>
+      </div>
+      <div class="ctas">
+        <a class="btn btn-gold" href="https://instagram.com/liftverse.app" target="_blank" rel="noopener">Síguenos en Instagram</a>
+      </div>
     </div>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
-    <span>© 2026 LiftVerse</span>
-    <div class="links">
-      <a href="/privacidad">Privacidad</a>
-      <a href="/terminos">Términos</a>
-      <a href="mailto:contacto@liftverse.app">Contacto</a>
+    <div class="foot">
+      <div>
+        <img src="/img/logo.webp" alt="LiftVerse" width="96" height="52">
+        <p>Tu fuerza, en rangos.</p>
+      </div>
+      <div>
+        <h4>App</h4>
+        <ul>
+          <li><a href="#funciones">Funciones</a></li>
+          <li><a href="#rangos">Rangos</a></li>
+          <li><a href="#planes">Planes</a></li>
+          <li><a href="#faq">Preguntas frecuentes</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="/privacidad">Privacidad</a></li>
+          <li><a href="/terminos">Términos de uso</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="mailto:contacto@liftverse.app">contacto@liftverse.app</a></li>
+          <li><a href="https://instagram.com/liftverse.app" target="_blank" rel="noopener">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copy">
+      <span>© 2026 LiftVerse</span>
+      <span>Hecho en Chile</span>
     </div>
   </div>
 </footer>
 
+<script>
+  // Menú en celular
+  var btn = document.getElementById('menu-btn'), menu = document.getElementById('menu');
+  btn.addEventListener('click', function () {
+    var open = menu.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open);
+  });
+  menu.addEventListener('click', function (e) {
+    if (e.target.tagName === 'A') { menu.classList.remove('open'); btn.setAttribute('aria-expanded', false); }
+  });
+
+  // Carrusel de capturas
+  var track = document.getElementById('track');
+  function move(dir) {
+    var card = track.querySelector('figure');
+    track.scrollBy({ left: dir * (card.offsetWidth + 20) * 2, behavior: 'smooth' });
+  }
+  document.getElementById('prev').addEventListener('click', function () { move(-1); });
+  document.getElementById('next').addEventListener('click', function () { move(1); });
+
+  // Aparecer al hacer scroll
+  var items = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    items.forEach(function (el) { io.observe(el); });
+  } else {
+    items.forEach(function (el) { el.classList.add('in'); });
+  }
+</script>
 </body>
 </html>
