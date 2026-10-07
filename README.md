@@ -1,8 +1,8 @@
 # liftverse.app
 
-Página web de LiftVerse (HTML estático), publicada con Cloudflare Pages.
+Página web de LiftVerse (HTML estático en `public/`), publicada como Cloudflare Worker con archivos estáticos (`wrangler.jsonc`).
 
-- `index.html`: página principal.
-- `privacidad.html` y `terminos.html`: copiados de `appgym/legal/` (generados por `node scripts/buildLegalPages.js`).
+- `public/index.html`: página principal.
+- `public/privacidad.html` y `public/terminos.html`: copiados de `appgym/legal/` (generados por `node scripts/buildLegalPages.js`).
 
 Cada push a `main` se publica solo.
