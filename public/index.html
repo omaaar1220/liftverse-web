@@ -153,7 +153,6 @@
   .carousel { display: flex; align-items: center; gap: 12px; max-width: 1264px; margin: 0 auto; padding: 0 16px; }
   .carousel .arrow { flex: none; width: 52px; height: 52px; margin-bottom: 40px; border-radius: 50%; border: 1px solid var(--border); background: var(--surface); color: var(--text); cursor: pointer; display: grid; place-items: center; transition: border-color .15s, opacity .15s; }
   .carousel .arrow:hover { border-color: var(--gold); }
-  .carousel .arrow:disabled { opacity: 0.3; cursor: default; border-color: var(--border); }
   .track { flex: 1; min-width: 0; display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 8px 16px 24px; scrollbar-width: none; }
   .track::-webkit-scrollbar { display: none; }
   .track figure { margin: 0; flex: 0 0 230px; scroll-snap-align: center; }
@@ -500,6 +499,7 @@
       <figure><div class="phone"><img src="/img/app/progreso.webp" alt="Progreso con volumen, series e intensidad" width="600" height="1220" loading="lazy"></div><figcaption>Progreso por músculo</figcaption></figure>
       <figure><div class="phone"><img src="/img/app/recuperacion.webp" alt="Recuperación muscular" width="600" height="1220" loading="lazy"></div><figcaption>Recuperación muscular</figcaption></figure>
       <figure><div class="phone"><img src="/img/app/resumen-mes.webp" alt="Resumen del mes para compartir" width="600" height="1220" loading="lazy"></div><figcaption>Resumen del mes</figcaption></figure>
+      <figure><div class="phone"><img src="/img/app/versus.webp" alt="Reto versus aceptado entre dos amigos" width="600" height="1220" loading="lazy"></div><figcaption>Versus con tus amigos</figcaption></figure>
     </div>
     <button type="button" class="arrow" id="next" aria-label="Siguiente"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 4.5 13 10l-5.5 5.5"/></svg></button>
   </div>
@@ -717,23 +717,61 @@
     if (e.target.tagName === 'A') { menu.classList.remove('open'); btn.setAttribute('aria-expanded', false); }
   });
 
-  // Carrusel de capturas
+  // Carrusel de capturas: infinito (las capturas se repiten) y avanza solo hacia la derecha
   var track = document.getElementById('track');
-  function move(dir) {
-    var card = track.querySelector('figure');
-    track.scrollBy({ left: dir * (card.offsetWidth + 20) * 2, behavior: 'smooth' });
+  var originals = Array.prototype.slice.call(track.children);
+  originals.forEach(function (fig) {
+    var copy = fig.cloneNode(true);
+    copy.setAttribute('aria-hidden', 'true');
+    copy.querySelector('img').alt = '';
+    track.appendChild(copy);
+  });
+  function stepWidth() { return originals[1].offsetLeft - originals[0].offsetLeft; }
+  function setWidth() { return track.children[originals.length].offsetLeft - originals[0].offsetLeft; }
+  // Salta sin animación a la posición equivalente en la otra copia
+  function jump(x) {
+    track.style.scrollSnapType = 'none';
+    track.scrollLeft = x;
+    void track.offsetWidth;
+    track.style.scrollSnapType = '';
   }
-  var prev = document.getElementById('prev'), next = document.getElementById('next');
-  prev.addEventListener('click', function () { move(-1); });
-  next.addEventListener('click', function () { move(1); });
-  // Apaga la flecha cuando el carrusel llega a un extremo
-  function updateArrows() {
-    prev.disabled = track.scrollLeft <= 4;
-    next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
+  function wrap() {
+    var w = setWidth();
+    if (track.scrollLeft >= w) jump(track.scrollLeft - w);
   }
-  track.addEventListener('scroll', updateArrows, { passive: true });
-  window.addEventListener('resize', updateArrows);
-  updateArrows();
+  function move(cards) {
+    var step = stepWidth();
+    wrap();
+    if (cards < 0 && track.scrollLeft < -cards * step) jump(track.scrollLeft + setWidth());
+    track.scrollBy({ left: cards * step, behavior: 'smooth' });
+  }
+  document.getElementById('prev').addEventListener('click', function () { move(-2); pause(); });
+  document.getElementById('next').addEventListener('click', function () { move(2); pause(); });
+  var wrapTimer;
+  track.addEventListener('scroll', function () {
+    clearTimeout(wrapTimer);
+    wrapTimer = setTimeout(wrap, 200);
+  }, { passive: true });
+
+  // Avance automático: se detiene mientras el mouse está encima, al tocarlo o si no se ve
+  var carousel = track.parentNode, hovering = false, visible = false, pausedUntil = 0;
+  function pause() { pausedUntil = Date.now() + 6000; }
+  carousel.addEventListener('mouseenter', function () { hovering = true; });
+  carousel.addEventListener('mouseleave', function () { hovering = false; });
+  track.addEventListener('pointerdown', pause);
+  track.addEventListener('touchstart', pause, { passive: true });
+  track.addEventListener('wheel', pause, { passive: true });
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) { visible = entries[0].isIntersecting; }).observe(track);
+  } else {
+    visible = true;
+  }
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduceMotion) {
+    setInterval(function () {
+      if (visible && !hovering && !document.hidden && Date.now() > pausedUntil) move(1);
+    }, 3000);
+  }
 
   // Cifras de la portada: suben desde 0 al aparecer
   var counters = document.querySelectorAll('[data-count]');
