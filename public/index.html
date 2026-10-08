@@ -6,7 +6,9 @@
 <title>LiftVerse · Únete al LiftVerso</title>
 <meta name="description" content="LiftVerse es el universo del gimnasio: atletas, coaches y gimnasios conectados en una sola app. Registra tus entrenos, sube de Novato a Legendario y compite con tus amigos.">
 <meta name="theme-color" content="#0A0A0A">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-48.png" sizes="48x48" type="image/png">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:title" content="LiftVerse · Únete al LiftVerso">
 <meta property="og:description" content="El universo del gimnasio: atletas, coaches y gimnasios en una sola app.">
 <meta property="og:image" content="https://liftverse.app/img/rango7.webp">
@@ -76,9 +78,9 @@
   .phones .p1 { left: 50%; top: 0; transform: translateX(-50%); z-index: 2; }
   .phones .p2 { left: 0; top: 70px; transform: rotate(-7deg); opacity: 0.8; }
   .phones .p3 { right: 0; top: 70px; transform: rotate(7deg); opacity: 0.8; }
-  .facts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; margin-top: 64px; }
-  .facts div { background: var(--bg); padding: 22px 16px; text-align: center; }
-  .facts strong { display: block; font-family: "Bebas Neue", sans-serif; font-weight: 400; font-size: 44px; line-height: 1; color: var(--champagne); }
+  .facts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(201,162,74,0.35); border: 1px solid rgba(201,162,74,0.5); border-radius: 14px; overflow: hidden; margin-top: 64px; box-shadow: 0 0 40px rgba(201,162,74,0.08); }
+  .facts div { background: linear-gradient(180deg, rgba(201,162,74,0.10), var(--bg) 70%), var(--bg); padding: 22px 16px; text-align: center; }
+  .facts strong { display: block; font-family: "Bebas Neue", sans-serif; font-weight: 400; font-size: 44px; line-height: 1; color: var(--gold); background: linear-gradient(180deg, #E8D9A8, #C9A24A 60%, #A8842F); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; font-variant-numeric: tabular-nums; }
   .facts span { font-size: 13px; color: var(--muted); }
 
   /* Estrellas de fondo (el universo) */
@@ -312,8 +314,8 @@
       </div>
     </div>
     <div class="facts reveal">
-      <div><strong>+1.000</strong><span>ejercicios</span></div>
-      <div><strong>7 rangos</strong><span>de Novato a Legendario</span></div>
+      <div><strong data-count="1000" data-prefix="+">+1.000</strong><span>ejercicios</span></div>
+      <div><strong data-count="7" data-suffix=" rangos">7 rangos</strong><span>de Novato a Legendario</span></div>
       <div><strong>3 modos</strong><span>Atleta, Coach y Gym</span></div>
       <div><strong>Gratis</strong><span>para entrenar, sin anuncios</span></div>
     </div>
@@ -589,7 +591,7 @@
     <div class="gym-bar reveal">
       <div>
         <h3>¿Tienes un gimnasio?</h3>
-        <p>El Modo Gym es una experiencia aparte para administrar socios, pagos, clases y tu comunidad. Te contamos los planes.</p>
+        <p>El Modo Gym es una experiencia aparte para administrar tu gimnasio desde la app: socios y sus planes, pagos, sedes, check-in, horario de clases y avisos a tus socios. Además, tu gimnasio tiene su propia comunidad verificada con ranking, para que tus socios compitan entre ellos. Escríbenos y te contamos los planes.</p>
       </div>
       <a class="btn btn-line" href="mailto:contacto@liftverse.app?subject=Modo%20Gym">Escríbenos</a>
     </div>
@@ -731,6 +733,27 @@
   track.addEventListener('scroll', updateArrows, { passive: true });
   window.addEventListener('resize', updateArrows);
   updateArrows();
+
+  // Cifras de la portada: suben desde 0 al aparecer
+  var counters = document.querySelectorAll('[data-count]');
+  var calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function countUp(el) {
+    var end = +el.dataset.count, pre = el.dataset.prefix || '', suf = el.dataset.suffix || '';
+    var dur = end > 100 ? 1800 : 1200, t0 = null;
+    function frame(t) {
+      if (!t0) t0 = t;
+      var k = Math.min((t - t0) / dur, 1), eased = 1 - Math.pow(1 - k, 3);
+      el.textContent = pre + Math.round(end * eased).toLocaleString('es-CL') + suf;
+      if (k < 1) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+  if (!calm && 'IntersectionObserver' in window) {
+    var co = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { countUp(en.target); co.unobserve(en.target); } });
+    });
+    counters.forEach(function (el) { co.observe(el); });
+  }
 
   // Aparecer al hacer scroll
   var items = document.querySelectorAll('.reveal');
