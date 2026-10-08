@@ -717,7 +717,7 @@
     if (e.target.tagName === 'A') { menu.classList.remove('open'); btn.setAttribute('aria-expanded', false); }
   });
 
-  // Carrusel de capturas: infinito (las capturas se repiten) y avanza solo hacia la derecha
+  // Carrusel de capturas: se desliza solo y sin pausas hacia la derecha, y las capturas se repiten
   var track = document.getElementById('track');
   var originals = Array.prototype.slice.call(track.children);
   originals.forEach(function (fig) {
@@ -726,52 +726,34 @@
     copy.querySelector('img').alt = '';
     track.appendChild(copy);
   });
+  track.style.scrollSnapType = 'none';
   function stepWidth() { return originals[1].offsetLeft - originals[0].offsetLeft; }
   function setWidth() { return track.children[originals.length].offsetLeft - originals[0].offsetLeft; }
-  // Salta sin animación a la posición equivalente en la otra copia
-  function jump(x) {
-    track.style.scrollSnapType = 'none';
-    track.scrollLeft = x;
-    void track.offsetWidth;
-    track.style.scrollSnapType = '';
-  }
-  function wrap() {
-    var w = setWidth();
-    if (track.scrollLeft >= w) jump(track.scrollLeft - w);
-  }
-  function move(cards) {
-    var step = stepWidth();
-    wrap();
-    if (cards < 0 && track.scrollLeft < -cards * step) jump(track.scrollLeft + setWidth());
-    track.scrollBy({ left: cards * step, behavior: 'smooth' });
-  }
-  document.getElementById('prev').addEventListener('click', function () { move(-2); pause(); });
-  document.getElementById('next').addEventListener('click', function () { move(2); pause(); });
-  var wrapTimer;
-  track.addEventListener('scroll', function () {
-    clearTimeout(wrapTimer);
-    wrapTimer = setTimeout(wrap, 200);
-  }, { passive: true });
-
-  // Avance automático: se detiene mientras el mouse está encima, al tocarlo o si no se ve
-  var carousel = track.parentNode, hovering = false, visible = false, pausedUntil = 0;
-  function pause() { pausedUntil = Date.now() + 6000; }
-  carousel.addEventListener('mouseenter', function () { hovering = true; });
-  carousel.addEventListener('mouseleave', function () { hovering = false; });
-  track.addEventListener('pointerdown', pause);
-  track.addEventListener('touchstart', pause, { passive: true });
-  track.addEventListener('wheel', pause, { passive: true });
-  if ('IntersectionObserver' in window) {
-    new IntersectionObserver(function (entries) { visible = entries[0].isIntersecting; }).observe(track);
-  } else {
-    visible = true;
-  }
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (!reduceMotion) {
-    setInterval(function () {
-      if (visible && !hovering && !document.hidden && Date.now() > pausedUntil) move(1);
-    }, 3000);
+  var SPEED = reduceMotion ? 0 : 45; // px por segundo
+  var pos = 0, lastSet = 0, extra = 0, touching = false, last = null;
+  // Las flechas suman un empujón que se reparte en los cuadros siguientes
+  document.getElementById('prev').addEventListener('click', function () { extra -= 2 * stepWidth(); });
+  document.getElementById('next').addEventListener('click', function () { extra += 2 * stepWidth(); });
+  track.addEventListener('touchstart', function () { touching = true; }, { passive: true });
+  track.addEventListener('touchend', function () { touching = false; }, { passive: true });
+  function frame(t) {
+    var dt = last === null ? 0 : Math.min((t - last) / 1000, 0.1);
+    last = t;
+    // Si la persona movió el carrusel con el dedo o el trackpad, sigue desde ahí
+    if (Math.abs(track.scrollLeft - lastSet) > 2) pos = track.scrollLeft;
+    if (!touching) {
+      var push = extra * Math.min(dt * 6, 1);
+      extra -= push;
+      pos += SPEED * dt + push;
+      var w = setWidth();
+      if (w > 0) pos = ((pos % w) + w) % w;
+      track.scrollLeft = pos;
+    }
+    lastSet = track.scrollLeft;
+    requestAnimationFrame(frame);
   }
+  requestAnimationFrame(frame);
 
   // Cifras de la portada: suben desde 0 al aparecer
   var counters = document.querySelectorAll('[data-count]');
