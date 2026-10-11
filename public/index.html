@@ -226,6 +226,9 @@
   .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
   .js .reveal.in { opacity: 1; transform: none; }
 
+  @media (max-width: 1040px) {
+    .nav ul { gap: 16px; }
+  }
   @media (max-width: 960px) {
     .grid { grid-template-columns: repeat(2, 1fr); }
     .phones { height: 520px; }
@@ -286,6 +289,7 @@
       <li><a href="#planes">Planes</a></li>
       <li><a href="#faq">Preguntas</a></li>
       <li><a href="https://gestion.liftverse.app" rel="noopener">Gimnasios</a></li>
+      <li><a href="https://coach.liftverse.app" rel="noopener">Coaches</a></li>
     </ul>
     <div class="right">
       <a class="btn btn-gold btn-sm" href="#descargar">Descargar</a>
@@ -599,6 +603,15 @@
       <div class="gym-actions">
         <a class="btn btn-gold" href="https://gestion.liftverse.app" rel="noopener">Acceso gimnasios</a>
         <a class="btn btn-line" href="mailto:contacto@liftverse.app?subject=Modo%20Gym">Escríbenos</a>
+      </div>
+    </div>
+    <div class="gym-bar reveal">
+      <div>
+        <h3>¿Eres coach?</h3>
+        <p>Además de la app, tienes un portal web para ver a tus atletas desde el computador: su racha, su rutina, cada entreno con sus series, sus récords y su peso. Entra con la misma cuenta de la app en la que activaste el Modo Coach.</p>
+      </div>
+      <div class="gym-actions">
+        <a class="btn btn-gold" href="https://coach.liftverse.app" rel="noopener">Acceso coaches</a>
       </div>
     </div>
   </div>
