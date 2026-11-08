@@ -292,7 +292,7 @@
       <li><a href="https://coach.liftverse.app" rel="noopener">Coaches</a></li>
     </ul>
     <div class="right">
-      <a class="btn btn-gold btn-sm" href="#precio">Ver precio</a>
+      <a class="btn btn-gold btn-sm" href="https://gestion.liftverse.app" rel="noopener">Acceso gimnasios</a>
       <button class="menu-btn" id="menu-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu">
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 5h14M3 10h14M3 15h14"/></svg>
       </button>
@@ -300,41 +300,28 @@
   </div>
 </nav>
 
-<header class="hero">
+<style>
+  /* Página de gimnasios: solo funciones y precios; lo principal es "Acceso gimnasios" */
+  .gym-top { padding: 72px 0 40px; position: relative; overflow: hidden; }
+  .gym-top .wrap { position: relative; text-align: center; }
+  .gym-top h1 { font-size: clamp(48px, 7vw, 84px); margin: 8px 0 28px; }
+  .gym-top h1 span { color: var(--gold); }
+  .btn-access { font-size: 18px; padding: 18px 40px; }
+  .access-bar { margin-top: 40px; text-align: center; }
+  #funciones { border-top: 0; padding-top: 24px; }
+</style>
+
+<header class="gym-top">
   <div class="stars" aria-hidden="true"></div>
   <div class="wrap">
-    <div class="hero-grid">
-      <div>
-        <p class="label">Modo Gym</p>
-        <h1 class="display">El software que tus socios<br><span>sí quieren abrir.</span></h1>
-        <p class="lead">Socios, cobros, caja y recepción con QR para tu gimnasio, dentro de la app que tus socios ya usan para entrenar, subir de rango y competir. Ellos vuelven todos los días; tú administras todo en el mismo lugar.</p>
-        <div class="gym-actions">
-          <a class="btn btn-gold" href="#precio">Empieza a mitad de precio</a>
-          <a class="btn btn-line" href="#funciones">Ver funciones</a>
-        </div>
-      </div>
-      <div class="phones" aria-hidden="true">
-        <div class="phone p2"><img src="/img/app/rangos.webp" alt="" width="600" height="1220"></div>
-        <div class="phone p3"><img src="/img/app/cuerpo.webp" alt="" width="600" height="1220"></div>
-        <div class="phone p1"><img src="/img/app/inicio.webp" alt="" width="600" height="1220"></div>
-      </div>
-    </div>
-    <div class="facts reveal">
-      <div><strong>QR</strong><span>que cambia cada 30 s</span></div>
-      <div><strong>0</strong><span>pagos que se puedan borrar</span></div>
-      <div><strong>Sin red</strong><span>la recepción sigue funcionando</span></div>
-      <div><strong>CLP</strong><span>hecho en Chile, para Chile</span></div>
-    </div>
+    <p class="label">Modo Gym</p>
+    <h1 class="display">Tu gimnasio, en <span>LiftVerse.</span></h1>
+    <a class="btn btn-gold btn-access" href="https://gestion.liftverse.app" rel="noopener">Acceso gimnasios</a>
   </div>
 </header>
 
 <section id="funciones">
   <div class="wrap">
-    <div class="section-head reveal">
-      <p class="label">Todo tu gimnasio</p>
-      <h2 class="display">Administra. Cobra. Retén.</h2>
-      <p>Lo que hoy llevas en planillas, cuadernos y chats, en un solo lugar y con reglas que evitan errores y descuadres.</p>
-    </div>
     <div class="grid">
       <div class="tile reveal"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><h3>Socios y planes</h3><p>Ficha de cada socio, planes por días o meses, congelamientos, bajas temporales y etiquetas. Importa tu planilla en minutos.</p></div>
       <div class="tile reveal"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div><h3>Cobros sin errores</h3><p>El precio sale del plan, los descuentos piden permiso y motivo, y un pago nunca se edita ni se borra: se anula o se reembolsa.</p></div>
@@ -352,103 +339,31 @@
   </div>
 </section>
 
-<section id="como">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <p class="label">Cómo empezar</p>
-      <h2 class="display">En una tarde.</h2>
-    </div>
-    <div class="steps">
-      <div class="step reveal"><h3>Crea tu gimnasio</h3><p>Descarga LiftVerse y, en la bienvenida, toca "¿Administras un gimnasio o eres coach?". Pones el nombre y listo.</p></div>
-      <div class="step reveal"><h3>Sube tus socios y planes</h3><p>Importa tu planilla de socios (CSV) y crea tus planes con su precio y duración. Invita a tu equipo con un código.</p></div>
-      <div class="step reveal"><h3>Abre la recepción</h3><p>Tus socios se vinculan desde la app y entran con su QR. Desde ese día, cada cobro y cada ingreso queda registrado.</p></div>
-    </div>
-  </div>
-</section>
-
 <section id="precio">
   <div class="wrap">
     <div class="section-head reveal">
       <p class="label">Precio</p>
       <h2 class="display">Un plan. Todo incluido.</h2>
-      <p>Sin módulos que se cobran aparte ni límite de socios. Para tus socios, la app es gratis.</p>
     </div>
     <div class="pro">
       <div class="plan highlight reveal">
         <h3>Modo Gym</h3>
         <div class="price">$49.990 <small>CLP / mes</small></div>
         <span class="muted">por sede · + IVA · sin permanencia</span>
-        <ul class="checks">
-          <li>Socios ilimitados</li>
-          <li>Cobros, caja y tienda</li>
-          <li>Recepción con QR</li>
-          <li>Clases, promociones y referidos</li>
-          <li>Equipo con permisos y registro de actividad</li>
-          <li>Comunidad verificada con ranking</li>
-        </ul>
       </div>
       <div class="plan reveal">
         <h3>Anual</h3>
         <div class="price">$499.900 <small>CLP / año</small></div>
         <span class="muted">por sede · + IVA · 2 meses gratis</span>
-        <ul class="checks">
-          <li>Todo lo del plan mensual</li>
-          <li>Equivale a $41.658 al mes</li>
-          <li>Te ayudamos a importar tus socios</li>
-        </ul>
       </div>
-      <div class="plan reveal" id="piloto">
+      <div class="plan reveal">
         <h3>Para empezar</h3>
         <div class="price">$24.995 <small>CLP / mes</small></div>
         <span class="muted">los primeros 3 meses · mitad de precio</span>
-        <ul class="checks">
-          <li>Todo incluido, igual que el plan mensual</li>
-          <li>Te ayudamos a dejarlo funcionando</li>
-          <li>Desde el cuarto mes, $49.990</li>
-          <li>Sin permanencia</li>
-        </ul>
       </div>
     </div>
-    <div class="gym-bar reveal">
-      <div>
-        <h3>¿Empezamos?</h3>
-        <p>Escríbenos con el nombre de tu gimnasio, tu comuna y cuántos socios tienes, y te ayudamos a dejarlo funcionando. Los primeros 3 meses pagas la mitad.</p>
-      </div>
-      <div class="gym-actions">
-        <a class="btn btn-gold" href="mailto:contacto@liftverse.app?subject=Modo%20Gym%20LiftVerse">Escríbenos</a>
-        <a class="btn btn-line" href="https://gestion.liftverse.app" rel="noopener">Acceso gimnasios</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="faq">
-  <div class="wrap">
-    <div class="section-head center reveal">
-      <p class="label">Preguntas frecuentes</p>
-      <h2 class="display">Lo que nos preguntan.</h2>
-    </div>
-    <div class="faq">
-      <details class="reveal">
-        <summary>¿Mis socios tienen que pagar algo?</summary>
-        <p>No. La app de LiftVerse es gratis para entrenar. Tus socios la usan para registrar sus entrenos, subir de rango y competir en la comunidad de tu gimnasio, y entran con su QR.</p>
-      </details>
-      <details class="reveal">
-        <summary>¿Qué pasa si se cae el internet?</summary>
-        <p>La recepción sigue funcionando con lo guardado en el equipo: puedes revisar y registrar los ingresos. Los cobros, la caja y los cambios de planes necesitan conexión.</p>
-      </details>
-      <details class="reveal">
-        <summary>¿Puedo traer mis socios desde una planilla?</summary>
-        <p>Sí. Importas un CSV (de Excel o Google Sheets) y ves fila por fila qué se va a crear, qué está repetido y qué falta, antes de guardar nada.</p>
-      </details>
-      <details class="reveal">
-        <summary>¿Hay contrato o permanencia?</summary>
-        <p>No. El plan mensual se puede cancelar cuando quieras. El anual se paga por adelantado y trae 2 meses gratis.</p>
-      </details>
-      <details class="reveal">
-        <summary>¿Mis datos están seguros?</summary>
-        <p>Cada persona del equipo solo ve lo que su permiso le deja, y cada cobro, anulación y cambio del equipo queda en un registro de actividad que nadie puede borrar. Lee nuestra <a href="/privacidad">política de privacidad</a>.</p>
-      </details>
+    <div class="access-bar reveal">
+      <a class="btn btn-gold btn-access" href="https://gestion.liftverse.app" rel="noopener">Acceso gimnasios</a>
     </div>
   </div>
 </section>
