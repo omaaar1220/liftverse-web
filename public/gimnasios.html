@@ -309,13 +309,20 @@
   .btn-access { font-size: 18px; padding: 18px 40px; }
   .access-bar { margin-top: 40px; text-align: center; }
   #funciones { border-top: 0; padding-top: 24px; }
+  .gym-plans { grid-template-columns: repeat(2, 1fr); max-width: 760px; margin: 0 auto; }
+  .gym-plans .plan { display: flex; flex-direction: column; }
+  .plan-tag { align-self: flex-start; font-size: 12px; font-weight: 700; letter-spacing: .04em; color: #0A0A0A; background: var(--gold); padding: 5px 10px; border-radius: 999px; margin-bottom: 14px; }
+  .plan-tag.soft { color: var(--gold); background: transparent; border: 1px solid rgba(201,162,74,.6); }
+  .gym-plans .was { color: var(--muted); text-decoration: line-through; font-size: 16px; margin-top: 10px; }
+  .gym-plans .then { margin: 6px 0 8px; font-weight: 600; color: var(--text); }
+  @media (max-width: 720px) { .gym-plans { grid-template-columns: 1fr; } }
 </style>
 
 <header class="gym-top">
   <div class="stars" aria-hidden="true"></div>
   <div class="wrap">
     <p class="label">Modo Gym</p>
-    <h1 class="display">Tu gimnasio, en <span>LiftVerse.</span></h1>
+    <h1 class="display">Tu gimnasio, en el <span>LiftVerso.</span></h1>
     <a class="btn btn-gold btn-access" href="https://gestion.liftverse.app" rel="noopener">Acceso gimnasios</a>
   </div>
 </header>
@@ -341,25 +348,26 @@
 
 <section id="precio">
   <div class="wrap">
-    <div class="section-head reveal">
+    <div class="section-head center reveal">
       <p class="label">Precio</p>
       <h2 class="display">Un plan. Todo incluido.</h2>
     </div>
-    <div class="pro">
+    <div class="pro gym-plans">
       <div class="plan highlight reveal">
-        <h3>Modo Gym</h3>
-        <div class="price">$49.990 <small>CLP / mes</small></div>
+        <span class="plan-tag">Primeros 3 meses a mitad de precio</span>
+        <h3>Mensual</h3>
+        <div class="was">$49.990</div>
+        <div class="price">$24.990 <small>CLP / mes</small></div>
+        <p class="then">Desde el 4.º mes, $49.990 al mes</p>
         <span class="muted">por sede · + IVA · sin permanencia</span>
       </div>
       <div class="plan reveal">
+        <span class="plan-tag soft">2 meses gratis</span>
         <h3>Anual</h3>
+        <div class="was">$599.880</div>
         <div class="price">$499.900 <small>CLP / año</small></div>
-        <span class="muted">por sede · + IVA · 2 meses gratis</span>
-      </div>
-      <div class="plan reveal">
-        <h3>Para empezar</h3>
-        <div class="price">$24.995 <small>CLP / mes</small></div>
-        <span class="muted">los primeros 3 meses · mitad de precio</span>
+        <p class="then">Equivale a $41.658 al mes</p>
+        <span class="muted">por sede · + IVA · un solo pago</span>
       </div>
     </div>
     <div class="access-bar reveal">
